@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 /**
  *Clase GrafoMatriz
  * 
- * Contiene la matriz de adyacencia
+ * Description: Clase utilizada para crear un grafo
  * 
  * @author raco1
  */
@@ -20,7 +20,7 @@ public class GrafoMatriz {
      */
     private Lista usuarios;
     /**
-     * array de amistades (probablemente se vaya a cambiar )
+     * array de amistades 
      */
     private Lista amigos;
     /**
@@ -35,8 +35,8 @@ public class GrafoMatriz {
     // Constructores
     /**
      * Constructor con 2 parametros
-     * @param almacenes
-     * @param arcos 
+     * @param Usuarios(Lista de usuarios)
+     * @param Amigos(Lista de las relaciones de amistad de los usuarios) 
      */
     public GrafoMatriz(Lista usuarios, Lista amigos ){
         this.usuarios=usuarios;
@@ -68,8 +68,7 @@ public class GrafoMatriz {
         int numAl=0;
         int numIl=0;
         
-        String verde = "\033[32m";
-        String amarillo = "\033[33m";
+        
         try{
             
         for (Nodo amigo=getAmigos().getpFirst(); amigo!=null; amigo=amigo.getpNext()  ) {

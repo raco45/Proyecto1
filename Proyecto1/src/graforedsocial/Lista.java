@@ -201,20 +201,20 @@ public class Lista {
 //        return null;
 //    }   
 //
-///**
-// * Se encarga de buscar una ruta en la lista
-// * @param id
-// * @return un nodo que tiene una de las rutas del almacen
-// */    
-//    public Nodo buscarRuta(String id){
-//        Nodo aux;
-//        for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
-//            if(id.equals(aux.getRuta().getSalida().getId())){
-//                return aux;
-//            }
-//        }
-//        return null;
-//    }       
+/**
+ * Se encarga de buscar una ruta en la lista
+ * @param id
+ * @return un nodo que tiene una de las rutas del almacen
+ */    
+    public Usuario buscarUser(String id){
+        Nodo aux;
+        for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
+            if(id.equals(aux.getUser().getId())){
+                return aux.getUser();
+            }
+        }
+        return null;
+    }       
 //    
     /**
      * Busca el elemento de la lista indicado por indice
