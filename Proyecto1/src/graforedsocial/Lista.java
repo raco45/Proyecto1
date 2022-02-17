@@ -109,45 +109,54 @@ public class Lista {
         }
         size+=1;
     }
-//   /**
-//    * se encarga de eliminar un objecto de la lista de almacenes
-//    * @param referencia 
-//    */
-//    public void removerPorReferencia(String referencia){
-//        if (buscar(referencia)!=null) {
-//            if (pFirst.getAlmacen().getId().equals( referencia)) {
-//                pFirst = pFirst.getpNext();
-//            } else{
-//                Nodo aux = pFirst;
-//                while(!aux.getpNext().getAlmacen().getId().equals(referencia)){
-//                    aux = aux.getpNext();
-//                }
-//                Nodo siguiente = aux.getpNext().getpNext();
-//                aux.setpNext(siguiente);  
-//            }
-//            size--;
-//        }
+    
+    public void eliminarUsuario(String id){
+        Nodo actual, anterior;
+        boolean encontrado;
+        
+        actual=pFirst;
+        anterior= null;
+        encontrado = false;
+        while((actual!=null)&&!encontrado){
+            encontrado= actual.getUser().getId().equals(id);
+            
+            if(!encontrado){
+                anterior=actual;
+                actual=actual.getpNext();
+            }
+        }
+        if(actual!=null){
+            if(actual==pFirst){
+                pFirst=actual.getpNext();
+            }
+            else{
+                anterior.setpNext(actual.getpNext());
+            }
+            actual=null;
+        }
+        size--;
+    }
+//    public void eliminarAmistad(String id){
+//        
 //    }
-//       
-//      /**
-//       * Elimina un objeto de la lista de rutas 
-//       * @param referencia 
-//       */
-//    public void removerRuta(String referencia){
-//        if (buscarRuta(referencia)!=null) {
-//            if (pFirst.getRuta().getSalida().getId().equals( referencia)) {
-//                pFirst = pFirst.getpNext();
-//            } else{
-//                Nodo aux = pFirst;
-//                while(!aux.getpNext().getRuta().getSalida().getId().equals(referencia)){
-//                    aux = aux.getpNext();
-//                }
-//                Nodo siguiente = aux.getpNext().getpNext();
-//                aux.setpNext(siguiente);  
-//            }
-//            size--;
-//        }
-//    }
+        
+        
+        
+        
+        
+            
+            
+    
+    public Nodo buscarNodo(String id){
+        Nodo aux;
+        for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
+            if(id.equals(aux.getUser().getId())){
+                return aux;
+            }
+        }
+        return null;
+    }
+
 //            
        /**
         * Se encarga de imprimir la lista de usarios
@@ -185,26 +194,11 @@ public class Lista {
             System.out.println("Lista vacia");
         }
     }
-//               
-//     /**
-//      * se encarga de buscar un almacen en la lista 
-//      * @param id
-//      * @return el nodo en donde esta guardado el dato id
-//      */          
-//    public Nodo buscar(String id){
-//        Nodo aux;
-//        for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
-//            if(id.equals(aux.getAlmacen().getId())){
-//                return aux;
-//            }
-//        }
-//        return null;
-//    }   
-//
+
 /**
- * Se encarga de buscar una ruta en la lista
+ * Busca el elemento de la lista indicaco por el id
  * @param id
- * @return un nodo que tiene una de las rutas del almacen
+ * @return retorna el objeto usuario si fue encontrado
  */    
     public Usuario buscarUser(String id){
         Nodo aux;

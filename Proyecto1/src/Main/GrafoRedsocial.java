@@ -35,7 +35,7 @@ public class GrafoRedsocial {
         
         file.leerTxt(listaUsuarios, listaAmistades);
         listaUsuarios.imprimir();
-        JOptionPane.showMessageDialog(null,listaUsuarios.getpLast().getUser().getId());
+        
         listaAmistades.imprimirAmistades();
         file.escribirTxt(listaUsuarios, listaAmistades);
         
@@ -46,6 +46,9 @@ public class GrafoRedsocial {
         grafo.generarM();
         grafo.llenarMatriz();
         grafo.imprimirGrafo();
+//        Usuario raco= new Usuario("238","Ricardo");
+//        grafo.añadirUsuario(raco);
+//        grafo.imprimirGrafo();
         
         Graph nuevo= new SingleGraph("prueba");
         SpriteManager sman = new SpriteManager(nuevo);

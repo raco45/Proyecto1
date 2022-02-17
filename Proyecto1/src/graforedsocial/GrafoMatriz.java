@@ -2,6 +2,7 @@
 package graforedsocial;
 
 
+import Clases.Usuario;
 import javax.swing.JOptionPane;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -20,7 +21,7 @@ public class GrafoMatriz {
      */
     private Lista usuarios;
     /**
-     * array de amistades 
+     * Lista de amistades 
      */
     private Lista amigos;
     /**
@@ -59,7 +60,7 @@ public class GrafoMatriz {
         }
     }
     /**
-     * Se encarga de llenar la matriz con la distancia de los caminos entre los grafos
+     * Se encarga de llenar la matriz con el tiempo de amistad entre las relaciones de amistad
      */
     public void llenarMatriz(){
         String inicio;
@@ -105,17 +106,7 @@ public class GrafoMatriz {
         String verde = "\033[32m";
         String amarillo = "\033[33m";
         
-//        for(int i=0; i <matriz.length; i++ ){
-//            for(int j=0; j< matriz[i].length;j++){
-//                if(matriz[i][j]!=0){
-//                    System.out.print(verde+matriz[i][j]+ " | ");
-//                }else{
-//                    System.out.print(amarillo+matriz[i][j]+ " | ");
-//                    
-//                }
-//            }
-//            System.out.println();
-//        }
+
         
 
         System.out.print(" ");
@@ -160,95 +151,16 @@ public class GrafoMatriz {
 //    }
 //    
 //    
-//    /**
-//     * Agrega un nuevo almacen al grafo
-//     * @param id
-//     * @param stock 
-//     */
-//    public void addAlmacen(String id, Lista stock){
-//        try{
-//            if(getAlmacenes().buscar(id)==null){
-//                Almacen nuevo= new Almacen(id, stock);
-//                getAlmacenes().insertarAlmacen(nuevo);
-//                setSizeAlm(getSizeAlm() + 1);
-//                while(true){
-//                    Almacen llegada=elegirAlm();
-//                    int peso=pedirPeso();
-//                    Almacen llegada2=elegirAlm();
-//                    int peso2=pedirPeso();
-//                    if (llegada!=null ){
-//                        if(peso!=0){
-//                            addArco(nuevo, llegada, peso);
-//                            addArco(nuevo, llegada2, peso2);
-//                            generarM();
-//                            llenarMatriz();
-//                            break;
-//                        }else{
-//                            JOptionPane.showMessageDialog(null, "No es un input correcto ");
-//                        }
-//                    }else{
-//                        JOptionPane.showMessageDialog(null, "Error al colocar el almacen ");
-//                    }
-//                }
-//                JOptionPane.showMessageDialog(null,"Se agrego un nuevo almacen");
-//            }else{
-//                JOptionPane.showMessageDialog(null,"Ese almacen ya existe");
-//            }
-//        }catch (Exception err){
-//            JOptionPane.showMessageDialog(null,"Ese almacen ya existe");
-//        }
-//      }
-//    
-//   /**
-//    * Se encarga de pedir un almacen de llegada para generar una nueva ruta
-//    * @return el almacen a donde queremos llegar
-//    */
-//     public Almacen elegirAlm(){
-//         try{
-//             
-//            String[] cadena = new String[getAlmacenes().getSize()-1];
-//            int count=0;
-//
-//            for(Nodo aux=getAlmacenes().getpFirst();aux!=null; aux=aux.getpNext()){
-//                if(aux==getAlmacenes().getpLast()){
-//                    count++;
-//                }else{
-//                   cadena[count]=aux.getAlmacen().getId();
-//                   count++;
-//                }
-//            }
-//            Icon icono = new ImageIcon(getClass().getResource("almacen.jpg"));
-//            String resp = (String) JOptionPane.showInputDialog(null, "Seleccione el almacen de llegada", "Almacen", JOptionPane.DEFAULT_OPTION,icono , cadena, cadena[0]);
-//            return getAlmacenes().buscar(resp).getAlmacen();
-//                 
-//         }catch(Exception err){
-//             JOptionPane.showMessageDialog(null,"Error");
-//             return null;
-//         }
-//         
-//     }   
-//     
-//     /**
-//      * Se encarga de pedir el la distancia entre dos almacenes
-//      * @return la distancia entre los almacenes
-//      */
-//    public int pedirPeso(){
-//        String peso;
-//        try{
-//            while(true){
-//                peso = JOptionPane.showInputDialog(null, "¿Cual es la distancia entre los almacenes?", "redondee");
-//                if(Integer.parseInt(peso)<=0){
-//                    JOptionPane.showMessageDialog(null, "No es un numero valido", "Error", JOptionPane.WARNING_MESSAGE);
-//                    continue;
-//                }else{
-//                    return Integer.parseInt(peso);
-//                }
-//            }
-//        }catch(Exception err){
-//                JOptionPane.showMessageDialog(null, "No es un numero valido", "Error", JOptionPane.WARNING_MESSAGE);
-//        }
-//        return 0;
-//    }  
+ public void añadirUsuario(Usuario user){
+     usuarios.insertarUsuario(user);
+     sizeUsers=usuarios.getSize();
+     this.generarM();
+     this.llenarMatriz();
+ }
+     
+     
+  
+
 //    
 //    
 //    /**

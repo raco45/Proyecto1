@@ -72,14 +72,14 @@ public class ArchivoTxt {
                         readMode=2;
                     }else{
                         if(readMode==1){
-                            usuario= new Usuario(line.split(", ")[0],line.split(", ")[1]);
+                            usuario= new Usuario(line.replace(" ", "").split(",")[0],line.replace(" ", "").split(",")[1]);
                             if(usuario!=null){
                                 usuarios.insertarUsuario(usuario);
                             }
                         }else if (readMode==2){
-                            usuario=usuarios.buscarUser(line.split(", ")[0]);
-                            usuarioAux=usuarios.buscarUser(line.split(", ")[1]);
-                            arco= new Amistades(usuario,usuarioAux,Integer.parseInt(line.split(", ")[2]));
+                            usuario=usuarios.buscarUser(line.replace(" ", "").split(",")[0]);
+                            usuarioAux=usuarios.buscarUser(line.replace(" ", "").split(",")[1]);
+                            arco= new Amistades(usuario,usuarioAux,Integer.parseInt(line.replace(" ", "").split(",")[2]));
                             if(arco!=null){
                                 amistades.insertarAmistad(arco);
                             }
@@ -105,8 +105,8 @@ public class ArchivoTxt {
     }
     
     /**
-     * Description: Se encarga de tomar la informacion de las listas de usuarios y amistades y escribirlas en
-     * un archivo txt
+     * Description: Se encarga de tomar la informacion de las listas de usuarios y amistades y escribirlas 
+     * en un archivo txt
      * @param usuarios
      * @param amistades 
      */
