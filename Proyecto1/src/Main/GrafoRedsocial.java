@@ -5,9 +5,9 @@ import graforedsocial.GrafoMatriz;
 import graforedsocial.Lista;
 import Clases.Usuario;
 import graforedsocial.Nodo;
-import org.graphstream.graph.Graph;
-import org.graphstream.graph.implementations.*;
-import org.graphstream.ui.spriteManager.*;
+//import org.graphstream.graph.Graph;
+//import org.graphstream.graph.implementations.*;
+//import org.graphstream.ui.spriteManager.*;
 
 /**
  *
@@ -113,10 +113,10 @@ public class GrafoRedsocial {
         grafo.imprimirGrafo();
         
         Graph nuevo= new SingleGraph("prueba");
-        SpriteManager sman = new SpriteManager(nuevo);
+        //SpriteManager sman = new SpriteManager(nuevo);
         Nodo aux=listaUsuarios.getpFirst();
         for (int i = 0; i < listaUsuarios.getSize(); i++) {
-            nuevo.addNode(aux.getUser().getId());
+            //nuevo.addNode(aux.getUser().getId());
             aux=aux.getpNext();
         }
         String ver="";
