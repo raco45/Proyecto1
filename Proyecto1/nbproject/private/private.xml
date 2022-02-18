@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/graforedsocial/GrafoMatriz.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>158</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Main/GrafoRedsocial.java</file>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/graforedsocial/GrafoMatriz.java</file>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/lectura/ArchivoTxt.java</file>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/graforedsocial/Lista.java</file>
+            <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Clases/Amistades.java</file>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Clases/Usuario.java</file>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/graforedsocial/Nodo.java</file>
         </group>

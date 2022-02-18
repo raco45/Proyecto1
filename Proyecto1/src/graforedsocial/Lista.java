@@ -81,16 +81,22 @@ public class Lista {
      * @param user
      */
     public void insertarUsuario(Usuario user){
-        Nodo nuevo= new Nodo(user);
-        if(isVacio()){
-            pFirst=nuevo;
-            pLast=nuevo;
-        }else{
-            Nodo aux = pLast;
-            aux.setpNext(nuevo);
-            pLast=nuevo;
+        Usuario help=this.buscarUser(user.getId());
+        if(help==null){
+            
+            Nodo nuevo= new Nodo(user);
+            if(isVacio()){
+                pFirst=nuevo;
+                pLast=nuevo;
+            }else{
+                Nodo aux = pLast;
+                aux.setpNext(nuevo);
+                pLast=nuevo;
+            }
+            size+=1;
+        }else if(help!=null){
+            JOptionPane.showMessageDialog(null,"Este usuario ya existe");
         }
-        size+=1;
     }
 
     /**
@@ -136,17 +142,52 @@ public class Lista {
         }
         size--;
     }
-//    public void eliminarAmistad(String id){
-//        
-//    }
-        
-        
-        
-        
-        
+    public void eliminarAmistad(String id){
+        int cont=0;
+        Nodo aux=pFirst;
+        for (int i = 0; i < this.getSize(); i++) {
+            if(aux.getAmigos().getId1().getId().equals(id)||aux.getAmigos().getId2().getId().equals(id)){
+            cont++;
+            }
+            aux=aux.getpNext();
+           
+        }
+            Nodo actual, anterior;
+            boolean encontrado;
+            actual=pFirst;
+            anterior= null;
+            encontrado = false;
+            while((actual!=null)&&!encontrado){
+                String id1=actual.getAmigos().getId1().getId();
+                String id2=actual.getAmigos().getId2().getId();
+                encontrado= id1.equals(id)||id2.equals(id);
+
+                if(!encontrado){
+                    anterior=actual;
+                    actual=actual.getpNext();
+                }
+            }
+            if(actual!=null){
+                if(actual==pFirst){
+                    pFirst=actual.getpNext();
+                    size--;
+                }
+                else{
+                    anterior.setpNext(actual.getpNext());
+                    size--;
+                }
+                actual=null;
+            }
             
             
-    
+        if(cont!=0){
+            this.eliminarAmistad(id);
+        }else{
+            JOptionPane.showMessageDialog(null,"Borrado con exito");
+        }
+    }
+        
+        
     public Nodo buscarNodo(String id){
         Nodo aux;
         for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
