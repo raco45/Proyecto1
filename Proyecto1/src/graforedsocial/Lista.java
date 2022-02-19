@@ -198,7 +198,32 @@ public class Lista {
         return null;
     }
 
-//            
+            
+/**
+ * Busca el elemento de la lista indicaco por el id
+ * @param id
+ * @return retorna el objeto usuario si fue encontrado
+ */    
+    public Usuario buscarUser(String id){
+        Nodo aux;
+        for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
+            if(id.equals(aux.getUser().getId())){
+                return aux.getUser();
+            }
+        }
+        return null;
+    }
+    public Usuario buscarUsarName(String userName){
+         Nodo aux;
+        for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
+            if(userName.equals(aux.getUser().getUserName())){
+                return aux.getUser();
+            }
+        }
+        return null;
+    }
+
+                
        /**
         * Se encarga de imprimir la lista de usarios
         */         
@@ -216,8 +241,6 @@ public class Lista {
             System.out.println("Lista vacia");
         }
     }
-
-                
     /**
      * Se encarga de imprimir la lista de Amistades
      */            
@@ -236,20 +259,6 @@ public class Lista {
         }
     }
 
-/**
- * Busca el elemento de la lista indicaco por el id
- * @param id
- * @return retorna el objeto usuario si fue encontrado
- */    
-    public Usuario buscarUser(String id){
-        Nodo aux;
-        for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
-            if(id.equals(aux.getUser().getId())){
-                return aux.getUser();
-            }
-        }
-        return null;
-    }       
 //    
     /**
      * Busca el elemento de la lista indicado por indice
