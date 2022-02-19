@@ -6,6 +6,7 @@
 package Clases;
 
 import graforedsocial.Nodo;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,25 +25,25 @@ public class Stack {
         return top == null;
     }
     
-    public void add(Amistades a){
-        Nodo node = new Nodo(a);
+    public void add(Usuario user){
+        Nodo node = new Nodo(user);
         node.setpNext(node);
         top = node;
     }
     
-    public Amistades delete() throws Exception{
+    public Usuario delete() throws Exception{
         if (this.isEmpty()) {
-            throw new Exception ("Pila vacía, no se puede extraer.");            
+            JOptionPane.showMessageDialog(null, "Error. Pila vacia");            
         }
-        Amistades aux = top.getAmigos();
+        Usuario aux = top.getUser();
         top = top.getpNext();
         return aux;
     }
     
-    public Amistades top() throws Exception{
+    public Usuario top(){
         if (this.isEmpty()) {
-            throw new Exception ("Pila vacía, no se puede leer cima.");
+            JOptionPane.showMessageDialog(null, "Error. Pila vacia");
         }
-        return top.getAmigos();
+        return top.getUser();
     }
 }

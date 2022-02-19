@@ -11,12 +11,14 @@ public class Usuario {
     private String id;
     private String userName;
     private Lista listaAmigos;
+    private boolean visited;
     
     
     public Usuario(String id, String userName){
         this.id=id;
         this.userName=userName;
-        this.listaAmigos=null; 
+        this.listaAmigos=null;
+        this.visited = false;
         
     }
     
@@ -61,6 +63,20 @@ public class Usuario {
      */
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    /**
+     * @return the visited
+     */
+    public boolean isVisited() {
+        return visited;
+    }
+
+    /**
+     * @param visited the visited to set
+     */
+    public void setVisited(boolean visited) {
+        this.visited = visited;
     }
     
     
