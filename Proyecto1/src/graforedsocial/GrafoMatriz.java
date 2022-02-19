@@ -2,6 +2,7 @@
 package graforedsocial;
 
 
+import Clases.Amistades;
 import Clases.Usuario;
 import javax.swing.JOptionPane;
 import javax.swing.Icon;
@@ -92,12 +93,12 @@ public class GrafoMatriz {
                 getMatriz()[numAl][numIl]=peso;
                 getMatriz()[numIl][numAl]=peso;
         }
-
-        
         }catch (Exception err){
             JOptionPane.showMessageDialog(null, "Una lista esta vacia");
         }
     }
+
+        
         
     /**
      * Imprime la matriz de adyacencia (Esta aqui temporalmente)
@@ -127,54 +128,55 @@ public class GrafoMatriz {
                 }
             System.out.println("\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         }        
-
+}
+    
+    public void añadirAmistad(String id, String userName2, int peso){
+        Usuario user1= usuarios.buscarUser(id);
+        Usuario user2=usuarios.buscarUsarName(userName2);
+        Amistades amistad= new Amistades(user1, user2, peso);
+        amigos.insertarAmistad(amistad);
+        JOptionPane.showMessageDialog(null,user1.getUserName()+" ahora es amigo de "+user2.getUserName());
+    }
+    public void añadirUsuario(String id, String userName){
+        Usuario user= new Usuario(id,"@"+userName);
+        usuarios.insertarUsuario(user);
+        sizeUsers=usuarios.getSize();
+        JOptionPane.showMessageDialog(null,"El usuario se creo con exito");
+    }
+    public void eliminarUsuario(String userName){
+        Usuario aux= usuarios.buscarUsarName(userName);
+        if(aux!=null){
+            usuarios.eliminarUsuario(aux.getId());
+            amigos.eliminarAmistad(aux.getId());
+            JOptionPane.showMessageDialog(null,"El usuario y sus relaciones de amistad fueron eliminadas");
+        }else{
+            JOptionPane.showMessageDialog(null,"No se encontro el usuarios");
+        }
+    }
+//    if((usuarios.buscarUser(id)!=null)){
+//            JOptionPane.showMessageDialog(null,"El id ya existe");
+//        }else if(usuarios.buscarUsarName(userName)!=null){
+//            JOptionPane.showMessageDialog(null,"El nombre de usuario ya existe");
+//        }else{
         
-}     
-//    /**
-//     * Asigna un nuevo arco 
-//     * @param salida
-//     * @param llegada
-//     * @param peso 
-//     */
-//    private void addArco(Almacen salida, Almacen llegada, int peso){
-//        //En construccion 
-//        try{
-//            if(getAlmacenes().buscar(salida.getId())!=null && getAlmacenes().buscar(llegada.getId())!=null ){
-//                 Ruta nueva= new Ruta(salida,llegada,peso);
-//                 getArcos().insertarRuta(nueva);
-//            }else{
-//                JOptionPane.showMessageDialog(null, "El almacen no pertenece a la lista");
-//            }
-//        }catch(Exception error) {
-//            
-//        }
-//    }
-//    
-//    
- public void añadirUsuario(Usuario user){
-     usuarios.insertarUsuario(user);
-     sizeUsers=usuarios.getSize();
-     this.generarM();
-     this.llenarMatriz();
- }
+        
+            
+        
+
+    public void actualizarMatriz(){
+        this.generarM();
+        this.llenarMatriz();
+    }
+    
+        
+        
+ 
+
      
      
   
 
-//    
-//    
-//    /**
-//     * Se encarga de eliminar un almacen y sus rutas
-//     * @param id 
-//     */
-//    public void eliminarAlmacen(String id){
-//        getAlmacenes().removerPorReferencia(id);
-//        getArcos().removerRuta(id);
-//        getArcos().removerRuta(id);
-//        getAlmacenes().imprimir();
-//        getArcos().imprimirRuta();
-//        
-//    }
+
 
     /**
      * @return the amigos

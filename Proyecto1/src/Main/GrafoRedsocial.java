@@ -43,6 +43,7 @@ public class GrafoRedsocial {
         listaUsuarios.imprimir();
         
         listaAmistades.imprimirAmistades();
+        JOptionPane.showMessageDialog(null, listaAmistades.getSize());
         file.escribirTxt(listaUsuarios, listaAmistades);
         
         
@@ -52,6 +53,13 @@ public class GrafoRedsocial {
         grafo.generarM();
         grafo.llenarMatriz();
         grafo.imprimirGrafo();
+        
+        listaUsuarios.eliminarUsuario("412");
+        listaAmistades.eliminarAmistad("412");
+        
+        listaUsuarios.imprimir();
+        listaAmistades.imprimirAmistades();
+        JOptionPane.showMessageDialog(null, listaAmistades.getSize());
 //        Usuario raco= new Usuario("238","Ricardo");
 //        grafo.añadirUsuario(raco);
 //        grafo.imprimirGrafo();
