@@ -5,9 +5,9 @@ import graforedsocial.GrafoMatriz;
 import graforedsocial.Lista;
 import Clases.Usuario;
 import graforedsocial.Nodo;
-//import org.graphstream.graph.Graph;
-//import org.graphstream.graph.implementations.*;
-//import org.graphstream.ui.spriteManager.*;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.*;
+import org.graphstream.ui.spriteManager.*;
 
 /**
  *
@@ -111,6 +111,7 @@ public class GrafoRedsocial {
         grafo.generarM();
         grafo.llenarMatriz();
         grafo.imprimirGrafo();
+        System.out.println(grafo.countIslands(grafo.getMatriz(), user9));;
         
         Graph nuevo= new SingleGraph("prueba");
         //SpriteManager sman = new SpriteManager(nuevo);
@@ -134,5 +135,7 @@ public class GrafoRedsocial {
             
         nuevo.display();
     }
+    
+    
     
 }

@@ -325,14 +325,14 @@ public class GrafoMatriz {
     //Funcion para encontrar usuarios adyacentes. Retorna una lista
     public Lista findAdj(int adj[][], Usuario user){
         Lista l = new Lista();
-        int index = 0;
+        int index = -1;
         for (int i = 0; i < getSizeUsers(); i++) {
             if (usuarios.getUsuario(i) == user) {
                 index = i;
                 break;
             }
         }
-        if (index != 0) {
+        if (index != -1) {
             for (int i = 0; i < adj[index].length; i++) {
                 if (adj[index][i] == 1) {
                     l.insertarUsuario(usuarios.getUsuario(i));
