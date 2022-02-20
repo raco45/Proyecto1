@@ -6,14 +6,26 @@
 
 package Interface;
 
+import Main.GrafoRedsocial;
+import graforedsocial.GrafoMatriz;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import lectura.ArchivoTxt;
+import lectura.Cargar;
+import lectura.GrafoRuta;
+import lectura.UsersArcos;
+
 /**
  *
  * @author AROMERO
  */
 public class Main extends javax.swing.JFrame {
-
+    GrafoMatriz grafo;
+    String path;
+    
     /** Creates new form Main */
     public Main() {
+        this.grafo=null;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -30,27 +42,19 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnDeleteUser = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         btnShowGraph = new javax.swing.JButton();
-        btnDFS = new javax.swing.JButton();
         btnConections = new javax.swing.JButton();
-        btnBFS = new javax.swing.JButton();
         btnUploadTxt = new javax.swing.JButton();
-        btnAddUser = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        idTextField1 = new javax.swing.JTextField();
-        userTextField2 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnDeleteUser.setText("Eliminar Usuario");
-        jPanel1.add(btnDeleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, 20));
 
         btnExit.setText("X");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -61,52 +65,78 @@ public class Main extends javax.swing.JFrame {
         jPanel1.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
 
         btnShowGraph.setText("Mostrar Grafo");
-        jPanel1.add(btnShowGraph, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 130, -1));
+        jPanel1.add(btnShowGraph, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 130, -1));
 
-        btnDFS.setText("DFS");
-        jPanel1.add(btnDFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 60, -1));
+        btnConections.setText("Mostrar Puentes");
+        jPanel1.add(btnConections, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
 
-        btnConections.setText("Mostrar Conexiones");
-        jPanel1.add(btnConections, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
-
-        btnBFS.setText("BFS");
-        jPanel1.add(btnBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 60, -1));
-
-        btnUploadTxt.setText("Subir txt");
-        jPanel1.add(btnUploadTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, -1, -1));
-
-        btnAddUser.setText("Agregar Usuario");
-        btnAddUser.addActionListener(new java.awt.event.ActionListener() {
+        btnUploadTxt.setText("Cargar txt");
+        btnUploadTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddUserActionPerformed(evt);
+                btnUploadTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAddUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, -1, 20));
+        jPanel1.add(btnUploadTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 100, -1));
 
-        jLabel1.setText("Usuario");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 50, 20));
+        jButton1.setText("Mostrar islas ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
-        jLabel2.setText("ID");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 20, 20));
+        botonModificar.setText("Modificar usuarios");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
 
-        jLabel3.setText("Mostrar usuarios");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 90, 20));
-        jPanel1.add(idTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 130, -1));
-        jPanel1.add(userTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 130, -1));
+        jButton3.setBackground(new java.awt.Color(255, 0, 51));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Actualizar datos");
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddUserActionPerformed
-
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        // TODO add your handling code here:
+        if(grafo==null){
+            JOptionPane.showMessageDialog(null, "No se ha cargado informacion al grafo");
+        }else{
+            
+            Modificar v2= new Modificar(this);
+            v2.setVisible(true);
+        }
+    }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void btnUploadTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadTxtActionPerformed
+        // TODO add your handling code here:
+        Cargar help= new Cargar();
+        GrafoRuta aux= help.cargarTxt();
+        grafo=aux.getG();
+        path=aux.getRuta();
+        JOptionPane.showMessageDialog(null,"El archivo se cargo correctamente");
+            
+    
+            
+        
+        
+    }//GEN-LAST:event_btnUploadTxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,20 +174,14 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddUser;
-    private javax.swing.JButton btnBFS;
+    private javax.swing.JButton botonModificar;
     private javax.swing.JButton btnConections;
-    private javax.swing.JButton btnDFS;
-    private javax.swing.JButton btnDeleteUser;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnShowGraph;
     private javax.swing.JButton btnUploadTxt;
-    private javax.swing.JTextField idTextField1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField userTextField2;
     // End of variables declaration//GEN-END:variables
 
 }

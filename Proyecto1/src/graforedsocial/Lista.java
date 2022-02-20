@@ -227,12 +227,12 @@ public class Lista {
        /**
         * Se encarga de imprimir la lista de usarios
         */         
-     public void imprimir(){
+     public String imprimir(){
         String mostrar="";
         if(!isVacio()){
             Nodo aux = pFirst;
             for (int i = 0; i < size; i++) {
-                mostrar+=aux.getUser().getId()+"\n";
+                mostrar+=aux.getUser().getUserName()+"\n";
                 //System.out.print(aux.getDato()+ "\n ");
                 aux = aux.getpNext();
             }
@@ -240,6 +240,7 @@ public class Lista {
         } else{
             System.out.println("Lista vacia");
         }
+        return mostrar;
     }
     /**
      * Se encarga de imprimir la lista de Amistades

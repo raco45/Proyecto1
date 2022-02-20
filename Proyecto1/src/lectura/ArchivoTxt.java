@@ -27,20 +27,18 @@ import javax.swing.JOptionPane;
  * @author raco1
  */
 public class ArchivoTxt {
-    /**
-     * Atributo
-     */
-    private String rutaArchivo;
+   
+    
     
     /**
      * Constructor
-     * Description: Se encarga de crear el objeto ArchivoTxt y recibe por parametro el string de la 
-     * @param ruta 
+     * Description: Se encarga de crear el objeto ArchivoTxt 
+      
      */
-    public ArchivoTxt(String ruta){
+    public ArchivoTxt(){
         
-        this.rutaArchivo=ruta;
     }
+        
     
     /**
      * 
@@ -49,9 +47,10 @@ public class ArchivoTxt {
      * @param usuarios
      * @param amistades 
      */
-    public void leerTxt(Lista usuarios, Lista amistades){
+    public UsersArcos leerTxt(String rutaArchivo){
         File file= new File(rutaArchivo);
-        
+        Lista usuarios = new Lista();
+        Lista amistades= new Lista();
         try{
             FileReader fileReader;
             fileReader= new FileReader(file);
@@ -87,22 +86,28 @@ public class ArchivoTxt {
                     }
                 }
                 br.close();
+                UsersArcos help= new UsersArcos(usuarios,amistades);
                 JOptionPane.showMessageDialog(null,"Lectura exitosa.");
+                return help;
+                
                                 
             }catch(IOException ex){
-                Logger.getLogger(ArchivoTxt.class.getName()).log(Level.SEVERE, null, ex);
-               
+                JOptionPane.showMessageDialog(null,"Error de lectura, se procedera a cargar un archivo por default");
+                
+                return null;
             }
-            
-            
-            
         }catch(FileNotFoundException ex){
             
-            Logger.getLogger(ArchivoTxt.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"No se encontro el archivo, se procedera a cargar un archivo por default");
+            return null;
+            
             
         }
-        
+         
     }
+            
+            
+            
     
     /**
      * Description: Se encarga de tomar la informacion de las listas de usuarios y amistades y escribirlas 
@@ -110,7 +115,7 @@ public class ArchivoTxt {
      * @param usuarios
      * @param amistades 
      */
-    public void escribirTxt(Lista usuarios, Lista amistades){
+    public void escribirTxt(Lista usuarios, Lista amistades, String rutaArchivo){
         String users="Usuarios"+"\n";
         String frends="Relaciones"+"\n";
         String escritura;
@@ -145,23 +150,6 @@ public class ArchivoTxt {
     
     
     
-    
-    
-    
-
-    /**
-     * @return the rutaArchivo
-     */
-    public String getRutaArchivo() {
-        return rutaArchivo;
-    }
-
-    /**
-     * @param rutaArchivo the rutaArchivo to set
-     */
-    public void setRutaArchivo(String rutaArchivo) {
-        this.rutaArchivo = rutaArchivo;
-    }
     
     
 }

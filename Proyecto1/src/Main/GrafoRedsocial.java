@@ -37,14 +37,14 @@ public class GrafoRedsocial {
         archivo.showOpenDialog(archivo);
         ruta=archivo.getSelectedFile().getAbsolutePath();
         //JOptionPane.showMessageDialog(null,"Archivo cargado correctamente");
-        ArchivoTxt file = new ArchivoTxt(ruta);
-        
-        file.leerTxt(listaUsuarios, listaAmistades);
-        listaUsuarios.imprimir();
-        
-        listaAmistades.imprimirAmistades();
-        JOptionPane.showMessageDialog(null, listaAmistades.getSize());
-        file.escribirTxt(listaUsuarios, listaAmistades);
+//        ArchivoTxt file = new ArchivoTxt(ruta);
+//        
+//        file.leerTxt(listaUsuarios, listaAmistades);
+////        listaUsuarios.imprimir();
+////        
+////        listaAmistades.imprimirAmistades();
+//        JOptionPane.showMessageDialog(null, listaAmistades.getSize());
+//        file.escribirTxt(listaUsuarios, listaAmistades);
         
         
         System.setProperty("org.graphstream.ui", "swing");
@@ -57,8 +57,8 @@ public class GrafoRedsocial {
         listaUsuarios.eliminarUsuario("412");
         listaAmistades.eliminarAmistad("412");
         
-        listaUsuarios.imprimir();
-        listaAmistades.imprimirAmistades();
+//        listaUsuarios.imprimir();
+//        listaAmistades.imprimirAmistades();
         JOptionPane.showMessageDialog(null, listaAmistades.getSize());
 //        Usuario raco= new Usuario("238","Ricardo");
 //        grafo.añadirUsuario(raco);
