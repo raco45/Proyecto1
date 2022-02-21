@@ -30,61 +30,7 @@ public class GrafoRedsocial {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Lista listaUsuarios= new Lista();
-        Lista listaAmistades= new Lista();
-        String ruta;
-        JFileChooser archivo= new JFileChooser();
-        archivo.showOpenDialog(archivo);
-        ruta=archivo.getSelectedFile().getAbsolutePath();
-        //JOptionPane.showMessageDialog(null,"Archivo cargado correctamente");
-//        ArchivoTxt file = new ArchivoTxt(ruta);
-//        
-//        file.leerTxt(listaUsuarios, listaAmistades);
-////        listaUsuarios.imprimir();
-////        
-////        listaAmistades.imprimirAmistades();
-//        JOptionPane.showMessageDialog(null, listaAmistades.getSize());
-//        file.escribirTxt(listaUsuarios, listaAmistades);
-        
-        
-        System.setProperty("org.graphstream.ui", "swing");
-        GrafoMatriz grafo= new GrafoMatriz(listaUsuarios, listaAmistades);
-        
-        grafo.generarM();
-        grafo.llenarMatriz();
-        grafo.imprimirGrafo();
-        
-        listaUsuarios.eliminarUsuario("412");
-        listaAmistades.eliminarAmistad("412");
-        
-//        listaUsuarios.imprimir();
-//        listaAmistades.imprimirAmistades();
-        JOptionPane.showMessageDialog(null, listaAmistades.getSize());
-//        Usuario raco= new Usuario("238","Ricardo");
-//        grafo.añadirUsuario(raco);
-//        grafo.imprimirGrafo();
-        
-        Graph nuevo= new SingleGraph("prueba");
-        //SpriteManager sman = new SpriteManager(nuevo);
-        Nodo aux=listaUsuarios.getpFirst();
-        for (int i = 0; i < listaUsuarios.getSize(); i++) {
-            //nuevo.addNode(aux.getUser().getId());
-            aux=aux.getpNext();
-        }
-        String ver="";
-        String ver1="";
-        String ver2="";
-        aux=listaAmistades.getpFirst();
-        for (int i = 0; i < listaAmistades.getSize(); i++) {
-            ver=aux.getAmigos().getId1().getId();
-            ver1=aux.getAmigos().getId2().getId();
-            ver2=ver+ver1;
-            nuevo.addEdge(ver2, ver, ver1, false);
-            aux=aux.getpNext();
-        }
        
-            
-        nuevo.display();
     }
     
 }

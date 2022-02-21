@@ -135,7 +135,7 @@ public class GrafoMatriz {
         Usuario user2=usuarios.buscarUsarName(userName2);
         Amistades amistad= new Amistades(user1, user2, peso);
         amigos.insertarAmistad(amistad);
-        JOptionPane.showMessageDialog(null,user1.getUserName()+" ahora es amigo de "+user2.getUserName());
+        
     }
     public void añadirUsuario(String id, String userName){
         Usuario user= new Usuario(id,"@"+userName);
@@ -150,14 +150,10 @@ public class GrafoMatriz {
             amigos.eliminarAmistad(aux.getId());
             JOptionPane.showMessageDialog(null,"El usuario y sus relaciones de amistad fueron eliminadas");
         }else{
-            JOptionPane.showMessageDialog(null,"No se encontro el usuarios");
+            JOptionPane.showMessageDialog(null,"No se encontro el usuario");
         }
     }
-//    if((usuarios.buscarUser(id)!=null)){
-//            JOptionPane.showMessageDialog(null,"El id ya existe");
-//        }else if(usuarios.buscarUsarName(userName)!=null){
-//            JOptionPane.showMessageDialog(null,"El nombre de usuario ya existe");
-//        }else{
+
         
         
             

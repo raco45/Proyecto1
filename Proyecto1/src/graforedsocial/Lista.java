@@ -232,7 +232,7 @@ public class Lista {
         if(!isVacio()){
             Nodo aux = pFirst;
             for (int i = 0; i < size; i++) {
-                mostrar+=aux.getUser().getUserName()+"\n";
+                mostrar+=aux.getUser().getUserName()+", "+aux.getUser().getId()+"\n" ;
                 //System.out.print(aux.getDato()+ "\n ");
                 aux = aux.getpNext();
             }
