@@ -14,6 +14,7 @@ import lectura.ArchivoTxt;
 import lectura.Cargar;
 import lectura.GrafoRuta;
 import lectura.UsersArcos;
+import mostrarGrafo.Mostrar;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.graph.Graph;
@@ -111,6 +112,11 @@ public class Main extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(255, 0, 51));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Actualizar datos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
@@ -153,29 +159,25 @@ public class Main extends javax.swing.JFrame {
 
     private void btnShowGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowGraphActionPerformed
         // TODO add your handling code here:
-        grafo.getUsuarios().imprimir();
-        Graph nuevo= new SingleGraph("prueba");
-        //SpriteManager sman = new SpriteManager(nuevo);
-        Nodo aux=grafo.getUsuarios().getpFirst();
-        for (int i = 0; i < grafo.getUsuarios().getSize(); i++) {
-            nuevo.addNode(aux.getUser().getId());
-            aux=aux.getpNext();
+        if( grafo==null){
+            JOptionPane.showMessageDialog(null, "No se ha cargado informacion al grafo");
+        }else{
+            grafo.getUsuarios().imprimir();
+            Mostrar most= new Mostrar();
+            most.mostrarGrafos(grafo);
         }
-        String ver="";
-        String ver1="";
-        String ver2="";
-        aux=grafo.getAmigos().getpFirst();
-        for (int i = 0; i < grafo.getAmigos().getSize(); i++) {
-            ver=aux.getAmigos().getId1().getId();
-            ver1=aux.getAmigos().getId2().getId();
-            ver2=ver+ver1;
-            nuevo.addEdge(ver2, ver, ver1, false);
-            aux=aux.getpNext();
-        }
-       
-            
-        nuevo.display();
+        
     }//GEN-LAST:event_btnShowGraphActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        if(grafo==null){
+            JOptionPane.showMessageDialog(null, "No se ha cargado informacion al grafo");
+        }else{
+            ArchivoTxt escri= new ArchivoTxt();
+            escri.escribirTxt(grafo.getUsuarios(), grafo.getAmigos(), path);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
