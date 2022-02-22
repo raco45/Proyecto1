@@ -2,7 +2,8 @@
 package Clases;
 
 /**
- *
+ * Description: Clase que se encarga de  crear la relacion de amistad que existe entre dos usarios
+ * 
  * @author raco1
  */
 public class Amistades {
@@ -10,7 +11,12 @@ public class Amistades {
     private Usuario id2;
     private int tiempoAmistad;
     
-    
+    /**
+     * Constructor de la clase Amistades 
+     * @param id1
+     * @param id2
+     * @param tiempo 
+     */
     public Amistades(Usuario id1, Usuario id2, int tiempo){
         this.id1=id1;
         this.id2=id2;

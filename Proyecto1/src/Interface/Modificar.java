@@ -141,10 +141,17 @@ public class Modificar extends javax.swing.JFrame {
         nuevoUserName.setText("");
         graf.actualizarMatriz();
         
+        
     }//GEN-LAST:event_botonCrearActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         // TODO add your handling code here:
+        Funciones func= new Funciones();
+        String userName= borrarUser.getText();
+        func.eliminar(graf, userName);
+        imprimir.setText(graf.getUsuarios().imprimir());
+        borrarUser.setText("");
+  
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     /**

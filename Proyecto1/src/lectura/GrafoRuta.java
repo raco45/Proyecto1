@@ -4,7 +4,8 @@ package lectura;
 import graforedsocial.GrafoMatriz;
 
 /**
- *
+ *Clase creada para poder sacar informacion de la funcion de cargar, guarda un grafo y la ruta del archivo txt
+ * 
  * @author raco1
  */
 public class GrafoRuta {

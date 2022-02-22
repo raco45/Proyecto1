@@ -4,7 +4,8 @@ package Clases;
 import graforedsocial.Lista;
 
 /**
- *
+ * Description: Clase que guarda la informacion del usuario 
+ * 
  * @author raco1
  */
 public class Usuario {
@@ -12,7 +13,11 @@ public class Usuario {
     private String userName;
     private Lista listaAmigos;
     
-    
+    /**
+     * Constructor de la clase usuario
+     * @param id
+     * @param userName 
+     */
     public Usuario(String id, String userName){
         this.id=id;
         this.userName=userName;

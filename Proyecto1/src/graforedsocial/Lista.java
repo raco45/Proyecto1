@@ -77,7 +77,7 @@ public class Lista {
     }
     
     /**
-     * Agrega un elemento al final de la lista 
+     * Agrega un nuevo usuario a la lista de usuarios 
      * @param user
      */
     public void insertarUsuario(Usuario user){
@@ -116,6 +116,11 @@ public class Lista {
         size+=1;
     }
     
+    
+    /**
+     * Se encargar de eliminar un usuario de la lista de usuarios
+     * @param id 
+     */
     public void eliminarUsuario(String id){
         Nodo actual, anterior;
         boolean encontrado;
@@ -142,6 +147,11 @@ public class Lista {
         }
         size--;
     }
+    
+    /**
+     * Se encarga de eliminar una relacion de amistad de la lista de amistades
+     * @param id 
+     */
     public void eliminarAmistad(String id){
         int cont=0;
         Nodo aux=pFirst;
@@ -187,7 +197,12 @@ public class Lista {
         }
     }
         
-        
+     
+    /**
+     * Se encarga de buscar el elemento que contenga el id
+     * @param id
+     * @return aux, en caso de no encontrar el id null 
+     */
     public Nodo buscarNodo(String id){
         Nodo aux;
         for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
@@ -213,6 +228,12 @@ public class Lista {
         }
         return null;
     }
+    
+    /**
+     * Busca el elemento de la lista indicado por el userName
+     * @param userName
+     * @return retorna el usuario si fue encontrado, de lo contrario retorna null
+     */
     public Usuario buscarUsarName(String userName){
          Nodo aux;
         for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
@@ -221,6 +242,21 @@ public class Lista {
             }
         }
         return null;
+    }
+    
+    /**
+     * Se encarga de verificar si dos usuarios tienen una relacion de amistad 
+     * @param id1
+     * @param id2
+     * @return Retorna true en caso de teneral, false caso contrario
+     */
+    public boolean buscarAmistad(Usuario id1, Usuario id2 ){
+        Nodo aux;
+        for (aux=pFirst ;  aux!=null; aux=aux.getpNext()) {
+            if((id1==aux.getAmigos().getId1()&&id2==aux.getAmigos().getId2())||(id1==aux.getAmigos().getId2()&&id2==aux.getAmigos().getId1()))
+                return true;
+        }
+        return false;
     }
 
                 
@@ -236,7 +272,7 @@ public class Lista {
                 //System.out.print(aux.getDato()+ "\n ");
                 aux = aux.getpNext();
             }
-            JOptionPane.showMessageDialog(null,mostrar );
+            //JOptionPane.showMessageDialog(null,mostrar );
         } else{
             System.out.println("Lista vacia");
         }

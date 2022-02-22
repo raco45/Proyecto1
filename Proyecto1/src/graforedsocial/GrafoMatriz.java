@@ -75,6 +75,7 @@ public class GrafoMatriz {
             
         for (Nodo amigo=getAmigos().getpFirst(); amigo!=null; amigo=amigo.getpNext()  ) {
             inicio=amigo.getAmigos().getId1().getId();
+
             fina=amigo.getAmigos().getId2().getId();
             peso=amigo.getAmigos().getTiempoAmistad();
             
@@ -130,6 +131,14 @@ public class GrafoMatriz {
         }        
 }
     
+    
+    /**
+     * Se encarga de añadir una nueva arista al grafo, entre dos vertices que pertenezcan al grafo
+     * @param id
+     * @param userName2
+     * @param peso 
+     */
+    
     public void añadirAmistad(String id, String userName2, int peso){
         Usuario user1= usuarios.buscarUser(id);
         Usuario user2=usuarios.buscarUsarName(userName2);
@@ -137,17 +146,30 @@ public class GrafoMatriz {
         amigos.insertarAmistad(amistad);
         
     }
+    
+    /**
+     * Se encarga de añadir un nuevo vertice al grafo
+     * @param id
+     * @param userName 
+     */
     public void añadirUsuario(String id, String userName){
         Usuario user= new Usuario(id,"@"+userName);
         usuarios.insertarUsuario(user);
         sizeUsers=usuarios.getSize();
         JOptionPane.showMessageDialog(null,"El usuario se creo con exito");
     }
+    
+    /**
+     * se encarga de eliminar un vertice del grafo y eliminar todas las aristas que tuvieran como conexion dicho vertice 
+     * 
+     * @param userName 
+     */
     public void eliminarUsuario(String userName){
         Usuario aux= usuarios.buscarUsarName(userName);
         if(aux!=null){
             usuarios.eliminarUsuario(aux.getId());
             amigos.eliminarAmistad(aux.getId());
+            sizeUsers= usuarios.getSize();
             JOptionPane.showMessageDialog(null,"El usuario y sus relaciones de amistad fueron eliminadas");
         }else{
             JOptionPane.showMessageDialog(null,"No se encontro el usuario");
@@ -158,7 +180,9 @@ public class GrafoMatriz {
         
             
         
-
+    /**
+     * se encarga de volver a generar la matriz 
+     */
     public void actualizarMatriz(){
         this.generarM();
         this.llenarMatriz();

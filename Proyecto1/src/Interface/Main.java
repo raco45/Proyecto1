@@ -143,6 +143,8 @@ public class Main extends javax.swing.JFrame {
         Cargar help = new Cargar();
         GrafoRuta aux = help.cargarTxt();
         grafo = aux.getG();
+        grafo.generarM();
+        grafo.llenarMatriz();
         path = aux.getRuta();
         JOptionPane.showMessageDialog(null, "El archivo se cargo correctamente");
 

@@ -5,7 +5,7 @@
             <url>src/graforedsocial/GrafoMatriz.java</url>
             <bookmark id="1">
                 <name/>
-                <line>173</line>
+                <line>169</line>
                 <key/>
             </bookmark>
         </file>
@@ -15,9 +15,12 @@
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Main/GrafoRedsocial.java</file>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/graforedsocial/GrafoMatriz.java</file>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Interface/Main.java</file>
+            <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/lectura/ArchivoTxt.java</file>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/graforedsocial/Lista.java</file>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Clases/Amistades.java</file>
-            <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/graforedsocial/Nodo.java</file>
+            <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Clases/Usuario.java</file>
+            <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Interface/Modificar.java</file>
+            <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Interface/Funciones.java</file>
         </group>
     </open-files>
 </project-private>

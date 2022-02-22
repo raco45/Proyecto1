@@ -41,12 +41,12 @@ public class ArchivoTxt {
         
     
     /**
-     * 
-     * Desciprtion: Metodo que se encarga de leer la informacion de un archivo txt, meter los usuarios en la lista de 
-     * usuarios y meter las relaciones de amistad en la lista de amistades
-     * @param usuarios
-     * @param amistades 
+     *  Desciprtion: Metodo que se encarga de leer la informacion de un archivo txt, meter los usuarios en una lista de 
+     * usuarios y meter las relaciones de amistad en una lista de amistades
+     * @param rutaArchivo
+     * @return retorna un objeto que guarda ambas listas
      */
+     
     public UsersArcos leerTxt(String rutaArchivo){
         File file= new File(rutaArchivo);
         Lista usuarios = new Lista();
@@ -114,6 +114,7 @@ public class ArchivoTxt {
      * en un archivo txt
      * @param usuarios
      * @param amistades 
+     * @param rutaArchivo
      */
     public void escribirTxt(Lista usuarios, Lista amistades, String rutaArchivo){
         String users="Usuarios"+"\n";

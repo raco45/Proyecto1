@@ -6,11 +6,14 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
- *
+ *Clase creada para boton de lectura de la interfaz grafica 
  * @author raco1
  */
 public class Cargar {
-    
+    /**
+     * Metodo que se encarga de que todo los datos leidos por el txt se guarden correctamente 
+     * @return retorna un objeto que guarda el grafo y la ruta de donde se leyo el txt para la creacion del mismo
+     */
     public GrafoRuta cargarTxt(){
         ArchivoTxt leer =new ArchivoTxt();
         try{
