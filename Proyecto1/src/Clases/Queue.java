@@ -62,4 +62,10 @@ public class Queue { //Clase Cola
         }
         return (head.getUser());
     }
+    
+    //Funcion tama;o
+    public int getSize(){
+        return size;
+    }
+    
 }

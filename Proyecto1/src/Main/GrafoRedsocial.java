@@ -18,7 +18,7 @@ public class GrafoRedsocial {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // TODO code application logic here
         Lista listaUsuarios= new Lista();
         Lista listaAmistades= new Lista();
@@ -111,9 +111,16 @@ public class GrafoRedsocial {
         grafo.generarM();
         grafo.llenarMatriz();
         grafo.imprimirGrafo();
-        System.out.println(grafo.countIslands(grafo.getMatriz(), user9));;
+        //AQUI
+        System.out.println(grafo.countIslands(grafo.getMatriz(), user1));
+        System.out.println(grafo.count(grafo.getMatriz(),grafo));
+        grafo.BFS(grafo.getMatriz(), user1);
+        grafo.findAdj(grafo.getMatriz(), user2).imprimir();
+        
+        //System.setProperty("org.graphstream.ui", "swing");
         
         Graph nuevo= new SingleGraph("prueba");
+        
         //SpriteManager sman = new SpriteManager(nuevo);
         Nodo aux=listaUsuarios.getpFirst();
         for (int i = 0; i < listaUsuarios.getSize(); i++) {

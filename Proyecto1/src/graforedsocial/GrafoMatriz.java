@@ -1,6 +1,7 @@
 package graforedsocial;
 
 import Clases.Queue;
+import Clases.Stack;
 import Clases.Usuario;
 import javax.swing.JOptionPane;
 import javax.swing.Icon;
@@ -319,34 +320,51 @@ public class GrafoMatriz {
     public void setUsuarios(Lista usuarios) {
         this.usuarios = usuarios;
     }
-    
-    //A PARTIR DE AQUI///////////////////////////////////////////////////////
-    
-    //Funcion para encontrar usuarios adyacentes. Retorna una lista
-    public Lista findAdj(int adj[][], Usuario user){
-        Lista l = new Lista();
-        int index = -1;
-        for (int i = 0; i < getSizeUsers(); i++) {
-            if (usuarios.getUsuario(i) == user) {
-                index = i;
-                break;
-            }
+
+    /*
+}
+        int peso = 0;
+
+        for (Nodo amigo = getAmigos().getpFirst(); amigo != null; amigo = amigo.getpNext()) {
+            peso = amigo.getAmigos().getTiempoAmistad();
         }
-        if (index != -1) {
-            for (int i = 0; i < adj[index].length; i++) {
-                if (adj[index][i] == 1) {
-                    l.insertarUsuario(usuarios.getUsuario(i));
+        return peso;
+     */
+    //A PARTIR DE AQUI///////////////////////////////////////////////////////
+    //Funcion para encontrar usuarios adyacentes. Retorna una lista
+    public Lista findAdj(int adj[][], Usuario user) {
+
+        int peso = 0;
+        Lista l = new Lista();
+
+        for (Nodo amigo = getAmigos().getpFirst(); amigo != null; amigo = amigo.getpNext()) {
+            peso = amigo.getAmigos().getTiempoAmistad();
+
+            int index = -1;
+            for (int i = 0; i < getSizeUsers(); i++) {
+                if (usuarios.getUsuario(i) == user) {
+                    index = i;
+                    break;
                 }
             }
+            if (index != -1) {
+                for (int i = 0; i < adj[index].length; i++) {
+                    if (adj[index][i] == peso) {////////////////////////////////
+                        l.insertarUsuario(usuarios.getUsuario(i));
+                    }
+                }
+            }
+
         }
         return l;
     }
+
     //Funcion de recorrido de anchura
     public void BFS(int[][] matrix, Usuario user) {
         Queue q = new Queue();
         q.add(user);
         user.setVisited(true);
-        while(!q.isEmpty()){
+        while (!q.isEmpty()) {
             Usuario u = q.delete();
             Lista l = findAdj(this.getMatriz(), u);
             for (int i = 0; i < l.getSize(); i++) {
@@ -357,21 +375,98 @@ public class GrafoMatriz {
                 }
             }
         }
-        
+
     }
+
+    public void bfs(GrafoMatriz g, int v, boolean[] visited) {
+        visited[v] = true;
+        for (int i = 0; i < getSizeUsers(); i++) {
+            if ((v != i) && (!visited[i])) {
+                bfs(g, i, visited);
+            }
+        }
+    }
+
+    public void bf(GrafoMatriz g) {
+        boolean visited[] = new boolean[getSizeUsers()];
+        for (int i = 0; i < getSizeUsers(); i++) {
+            visited[i] = false;
+        }
+        for (int i = 0; i < getSizeUsers(); i++) {
+            if (!visited[i]) {
+                bfs(g, i, visited);
+            }
+        }
+
+    }
+
+    public void DFS(GrafoMatriz g) throws Exception {
+        Stack s = new Stack();
+        boolean visited[] = new boolean[getSizeUsers()];
+        for (int i = 0; i < getSizeUsers(); i++) {
+            visited[i] = false;
+        }
+        for (int i = 0; i < getSizeUsers(); i++) {
+            if (!visited[i]) {
+                s.add(usuarios.getUsuario(i));
+                visited[i] = true;
+                while (!s.isEmpty()) {
+                    Usuario v = s.delete();
+                    for (int j = 0; j < getSizeUsers(); j++) {
+                        if (v!=usuarios.getUsuario(j) && !visited[j]) {
+                            s.add(usuarios.getUsuario(j));
+                            visited[j] = true;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
     //Funcion para contar islas
     public int countIslands(int mat[][], Usuario user) {
 
+        //int peso = 0;
         boolean[][] vis = new boolean[getSizeUsers()][getSizeUsers()];
         int count = 0;
         for (int i = 0; i < getSizeUsers(); i++) {
             for (int j = 0; j < getSizeUsers(); j++) {
-                if (mat[i][j] == 1 && !vis[i][j]) {
-                    BFS(mat, user); 
+                if (mat[i][j] == 1 && !vis[i][j]) {////////////////////////
+                    BFS(mat, user);
                     count++;
                 }
             }
         }
         return count;
+    }
+
+    //Tambien cuenta las islas
+    public int count(int[][] mat, GrafoMatriz g) throws Exception {
+        // base case
+        if (mat == null || mat.length == 0) {
+            return 0;
+        }
+
+        // `M × N` matrix
+        int M = mat.length;
+        int N = mat[0].length;
+
+        // stores if a cell is processed or not
+        boolean[][] processed = new boolean[M][N];
+
+        int island = 0;
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                // start BFS from each unprocessed node and
+                // increment island count
+                if (mat[i][j] == 1 && !processed[i][j]) {
+                    DFS(g);
+                    island++;
+                }
+            }
+        }
+
+        return island;
     }
 }
