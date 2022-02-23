@@ -162,9 +162,16 @@ public class Main extends javax.swing.JFrame {
         if( grafo==null){
             JOptionPane.showMessageDialog(null, "No se ha cargado informacion al grafo");
         }else{
-            grafo.getUsuarios().imprimir();
-            Mostrar most= new Mostrar();
-            most.mostrarGrafos(grafo);
+            JOptionPane.showMessageDialog(null,"Una vez se cierre la ventana del grafo se terminara el programa, si no ha guardado los cambios recomendamos no continuar");
+            int sele= JOptionPane.showOptionDialog(null,"¿Desea continuar", " ", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "SI", "NO" }, "SI");
+            if(sele==0){
+                grafo.getUsuarios().imprimir();
+                Mostrar most= new Mostrar();
+                most.mostrarGrafos(grafo);
+            }else{
+                
+            }
+                
         }
         
     }//GEN-LAST:event_btnShowGraphActionPerformed

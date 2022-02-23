@@ -5,12 +5,14 @@ import graforedsocial.GrafoMatriz;
 import graforedsocial.Lista;
 import Clases.Usuario;
 import graforedsocial.Nodo;
+import java.util.Iterator;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import lectura.ArchivoTxt;
 
 import org.graphstream.graph.Graph;
+import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.spriteManager.*;
 
@@ -34,3 +36,6 @@ public class GrafoRedsocial {
     }
     
 }
+
+    
+
