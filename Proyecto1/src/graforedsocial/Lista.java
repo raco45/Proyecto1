@@ -262,14 +262,15 @@ public class Lista {
                 
        /**
         * Se encarga de imprimir la lista de usarios
+     * @return lista 
         */         
      public String imprimir(){
         String mostrar="";
         if(!isVacio()){
             Nodo aux = pFirst;
             for (int i = 0; i < size; i++) {
-                mostrar+=aux.getUser().getUserName()+", "+aux.getUser().getId()+"\n" ;
-                //System.out.print(aux.getDato()+ "\n ");
+                mostrar+=aux.getUser().getUserName()+"---"+aux.getUser().getId()+"\n" ;
+                
                 aux = aux.getpNext();
             }
             //JOptionPane.showMessageDialog(null,mostrar );

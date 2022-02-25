@@ -156,7 +156,7 @@ public class GrafoMatriz {
         Usuario user= new Usuario(id,"@"+userName);
         usuarios.insertarUsuario(user);
         sizeUsers=usuarios.getSize();
-        JOptionPane.showMessageDialog(null,"El usuario se creo con exito");
+        //JOptionPane.showMessageDialog(null,"El usuario se creo con exito");
     }
     
     /**

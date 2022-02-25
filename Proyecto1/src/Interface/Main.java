@@ -152,36 +152,36 @@ public class Main extends javax.swing.JFrame {
         grafo.generarM();
         grafo.llenarMatriz();
         path = aux.getRuta();
-        JOptionPane.showMessageDialog(null, "El archivo se cargo correctamente");
+        JOptionPane.showMessageDialog(null, "Recuerde actualizar los datos una vez modificada la informacion");
 
 
     }//GEN-LAST:event_btnUploadTxtActionPerformed
 
     private void btnShowGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowGraphActionPerformed
         // TODO add your handling code here:
-        if( grafo==null){
+        if (grafo == null) {
             JOptionPane.showMessageDialog(null, "No se ha cargado informacion al grafo");
-        }else{
-            JOptionPane.showMessageDialog(null,"Una vez se cierre la ventana del grafo se terminara el programa, si no ha guardado los cambios recomendamos no continuar");
-            int sele= JOptionPane.showOptionDialog(null,"¿Desea continuar", " ", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "SI", "NO" }, "SI");
-            if(sele==0){
+        } else {
+            JOptionPane.showMessageDialog(null, "Una vez se cierre la ventana del grafo se terminara el programa, si no ha guardado los cambios recomendamos no continuar");
+            int sele = JOptionPane.showOptionDialog(null, "¿Desea continuar", " ", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"SI", "NO"}, "SI");
+            if (sele == 0) {
                 grafo.getUsuarios().imprimir();
-                Mostrar most= new Mostrar();
+                Mostrar most = new Mostrar();
                 most.mostrarGrafos(grafo);
-            }else{
-                
+            } else {
+
             }
-                
+
         }
-        
+
     }//GEN-LAST:event_btnShowGraphActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        if(grafo==null){
+        if (grafo == null) {
             JOptionPane.showMessageDialog(null, "No se ha cargado informacion al grafo");
-        }else{
-            ArchivoTxt escri= new ArchivoTxt();
+        } else {
+            ArchivoTxt escri = new ArchivoTxt();
             escri.escribirTxt(grafo.getUsuarios(), grafo.getAmigos(), path);
         }
     }//GEN-LAST:event_jButton3ActionPerformed

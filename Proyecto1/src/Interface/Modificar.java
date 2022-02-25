@@ -15,6 +15,8 @@ import graforedsocial.GrafoMatriz;
 public class Modificar extends javax.swing.JFrame {
     public static Main v1;
     GrafoMatriz graf;
+    String id;
+    String userName;
 
     /**
      * Creates new form Modificar
@@ -53,6 +55,7 @@ public class Modificar extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         imprimir = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -70,7 +73,7 @@ public class Modificar extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Usuarios, Id");
+        jLabel1.setText("Usuarios-- Id");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 90, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -118,6 +121,14 @@ public class Modificar extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 160, 300));
 
+        jButton2.setText("actualizar lista");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 360));
 
         pack();
@@ -135,11 +146,18 @@ public class Modificar extends javax.swing.JFrame {
         Funciones func= new Funciones();
         String id=nuevoId.getText();
         String userName= nuevoUserName.getText();
-        func.añadir(graf, id, userName);
-        imprimir.setText(graf.getUsuarios().imprimir());
+        boolean var=func.añadir(graf, id, userName);
+        if(var==true){
+            //graf.actualizarMatriz();
+            this.id=id;
+            this.userName=userName;
+            //imprimir.setText(graf.getUsuarios().imprimir());
+            AñadirAmistad v3= new AñadirAmistad(this);
+            v3.setVisible(true);
+        }
         nuevoId.setText("");
         nuevoUserName.setText("");
-        graf.actualizarMatriz();
+            
         
         
     }//GEN-LAST:event_botonCrearActionPerformed
@@ -153,6 +171,11 @@ public class Modificar extends javax.swing.JFrame {
         borrarUser.setText("");
   
     }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        imprimir.setText(graf.getUsuarios().imprimir());
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,6 +218,7 @@ public class Modificar extends javax.swing.JFrame {
     private javax.swing.JButton botonEliminar;
     private javax.swing.JTextArea imprimir;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
