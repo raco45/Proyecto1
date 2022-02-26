@@ -90,7 +90,10 @@ public class Funciones {
             if(amigo==null){
                 JOptionPane.showMessageDialog(null,"Usuario no encontrado");
                 return false;
-            }else if(g.getAmigos().buscarAmistad(creado, amigo)==true){
+            }else if(amigo==creado){
+                JOptionPane.showMessageDialog(null,"No puedes ser amigo de ti mismo");
+                return false;}
+            else if(g.getAmigos().buscarAmistad(creado, amigo)==true){
                 JOptionPane.showMessageDialog(null,"Este usuario ya es amigo de "+ creado.getUserName());
                 return false;
             }else{
