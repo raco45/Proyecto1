@@ -106,6 +106,7 @@ public class AñadirAmistad extends javax.swing.JFrame {
             int sele= JOptionPane.showOptionDialog(null,"¿Desea regresar", " ", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "SI", "NO" }, "SI");
             if(sele==0){
                 g.getUsuarios().eliminarUsuario(usuario);
+                g.actualizarMatriz();
                 this.dispose();
                 
             }else{
@@ -116,7 +117,7 @@ public class AñadirAmistad extends javax.swing.JFrame {
             if(sele==0){
                 
             }else if(sele==1){
-                g.actualizarMatriz();
+                //g.actualizarMatriz();
                 cont=0;
                 JOptionPane.showMessageDialog(null,"El usuario y sus relaciones de amistad se crearon con exito");
                 this.dispose();

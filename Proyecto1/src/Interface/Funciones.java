@@ -57,7 +57,8 @@ public class Funciones {
                     return false;
                 }else{
                     //g.añadirUsuario(id, userName);
-                    Usuario aux= new Usuario(id, userName);
+                    
+                    Usuario aux= new Usuario(id, "@"+userName);
                     g.getUsuarios().insertarUsuario(aux);
                     JOptionPane.showMessageDialog(null,"Indique las relaciones de amistad con otros usuarios");
                     return true;
@@ -94,6 +95,7 @@ public class Funciones {
                 return false;
             }else{
                 g.setSizeUsers(g.getUsuarios().getSize());
+             
                 g.añadirAmistad(id, "@"+userName, tiempoAmis);
                 g.actualizarMatriz();
                 return true;

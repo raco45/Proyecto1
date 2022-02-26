@@ -139,9 +139,12 @@ public class Lista {
         if(actual!=null){
             if(actual==pFirst){
                 pFirst=actual.getpNext();
-            }
+            }else if(actual==pLast){
+                anterior.setpNext(actual.getpNext()); 
+                pLast=anterior;}
             else{
                 anterior.setpNext(actual.getpNext());
+                
             }
             actual=null;
         }
@@ -268,12 +271,13 @@ public class Lista {
         String mostrar="";
         if(!isVacio()){
             Nodo aux = pFirst;
+
             for (int i = 0; i < size; i++) {
                 mostrar+=aux.getUser().getUserName()+"---"+aux.getUser().getId()+"\n" ;
                 
                 aux = aux.getpNext();
             }
-            //JOptionPane.showMessageDialog(null,mostrar );
+            
         } else{
             System.out.println("Lista vacia");
         }
