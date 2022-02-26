@@ -1,0 +1,35 @@
+//BFS para clase GrafoMatriz.java
+
+public int[] BFS(GrafoMatriz g, String id) {
+        Nodo u = g.getUsuarios().buscarNodo(id);
+        int v, w;
+        Queue q = new Queue();
+        int[] m;
+        m = new int[this.getSizeUsers()];
+        v = g.getUsuarios().getPosicion(u);
+        if (v < 0) {
+            System.out.println("Error");
+        }
+        for (int i = 0; i < g.getSizeUsers(); i++) {
+            m[i] = 0;
+        }
+        m[v] = 0;
+        q.add(v);
+        while (!q.isEmpty()) {
+            int cw;
+            cw = q.delete();
+            w = cw;
+
+            for (int j = 0; j < g.getSizeUsers(); j++) {
+                if ((g.getMatriz()[w][j] != 0) && (m[j] == 0)) {
+                    m[j] = m[w] + 1;
+                    q.add(j);
+                }
+
+            }
+
+        }
+        return m;
+    }
+
+}
