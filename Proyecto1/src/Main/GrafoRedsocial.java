@@ -5,6 +5,7 @@ import graforedsocial.GrafoMatriz;
 import graforedsocial.Lista;
 import Clases.Usuario;
 import graforedsocial.Nodo;
+import java.util.Arrays;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.spriteManager.*;
@@ -40,6 +41,8 @@ public class GrafoRedsocial {
         Usuario user16=new Usuario("443","luis");
         Usuario user17=new Usuario("907","andrea");
         Usuario user18=new Usuario("578","dayana");
+        
+        
         listaUsuarios.insertarUsuario(user1);
         listaUsuarios.insertarUsuario(user2);
         listaUsuarios.insertarUsuario(user3);
@@ -58,6 +61,7 @@ public class GrafoRedsocial {
         listaUsuarios.insertarUsuario(user16);
         listaUsuarios.insertarUsuario(user17);
         listaUsuarios.insertarUsuario(user18);
+        
         
         Amistades ami1=new Amistades(user1,user2,7);
         Amistades ami2=new Amistades(user1,user11,8);
@@ -111,11 +115,15 @@ public class GrafoRedsocial {
         grafo.generarM();
         grafo.llenarMatriz();
         grafo.imprimirGrafo();
-        //AQUI
-        System.out.println(grafo.countIslands(grafo.getMatriz(), user1));
-        System.out.println(grafo.count(grafo.getMatriz(),grafo));
-        grafo.BFS(grafo.getMatriz(), user1);
-        grafo.findAdj(grafo.getMatriz(), user2).imprimir();
+        
+    //AQUI
+
+        System.out.println(Arrays.toString(grafo.BFS(grafo, "254")));
+        //System.out.println(grafo.countIslands(grafo));
+        //System.out.println(grafo.count(grafo.getMatriz()));;
+        //grafo.befs(grafo, "254");
+
+
         
         //System.setProperty("org.graphstream.ui", "swing");
         

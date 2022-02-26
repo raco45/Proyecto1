@@ -5,45 +5,70 @@
  */
 package Clases;
 
-import graforedsocial.Nodo;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author AROMERO
  */
 public class Stack {
-    private Nodo top;
+    private Node top;
     private int size;
-    
-    public Stack(){
+
+    public Stack() {
         top = null;
         size = 0;
     }
     
-    public boolean isEmpty(){
-        return top == null;
+    public boolean isEmpty() {
+        return getTop() == null;
     }
     
-    public void add(Usuario user){
-        Nodo node = new Nodo(user);
-        node.setpNext(node);
-        top = node;
+    public void push(int user) {
+        Node node = new Node(user);
+        node.setPnext(node);
+        setTop(node);
+        size++;
     }
     
-    public Usuario delete() throws Exception{
-        if (this.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Error. Pila vacia");            
+    public int pop(){
+        int n = 0;
+        if (!this.isEmpty()) {
+            n = top.getVertex();
+            top = top.getPnext();
+            size--;
         }
-        Usuario aux = top.getUser();
-        top = top.getpNext();
-        return aux;
+       return n; 
+    }
+    public int peek(){
+        return top.getVertex();
+    }
+
+    /**
+     * @return the top
+     */
+    public Node getTop() {
+        return top;
+    }
+
+    /**
+     * @param top the top to set
+     */
+    public void setTop(Node top) {
+        this.top = top;
+    }
+
+    /**
+     * @return the size
+     */
+    public int getSize() {
+        return size;
+    }
+
+    /**
+     * @param size the size to set
+     */
+    public void setSize(int size) {
+        this.size = size;
     }
     
-    public Usuario top(){
-        if (this.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Error. Pila vacia");
-        }
-        return top.getUser();
-    }
+    
 }
