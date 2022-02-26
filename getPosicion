@@ -1,0 +1,15 @@
+//Obtener Posicion clase Lista
+
+    public int getPosicion(Nodo pos) {
+        if (!isVacio()) {
+            Nodo aux = getpFirst();
+            int cont = 0;
+            while (aux != pos) {
+                cont++;
+                aux = aux.getpNext();
+            }
+            return cont;
+        } else {
+            return -1;
+        }
+    }
