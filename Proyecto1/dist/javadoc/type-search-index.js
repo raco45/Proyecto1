@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"Clases","l":"Amistades"},{"p":"lectura","l":"ArchivoTxt"},{"p":"graforedsocial","l":"GrafoMatriz"},{"p":"Main","l":"GrafoRedsocial"},{"p":"graforedsocial","l":"Lista"},{"p":"graforedsocial","l":"Nodo"},{"p":"Clases","l":"Usuario"}]
