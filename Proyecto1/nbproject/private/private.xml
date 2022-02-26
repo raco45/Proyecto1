@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="3">
+        <file>
+            <url>src/Interface/AñadirAmistad.java</url>
+            <bookmark id="3">
+                <name/>
+                <line>108</line>
+                <key/>
+            </bookmark>
+        </file>
         <file>
             <url>src/graforedsocial/GrafoMatriz.java</url>
             <bookmark id="1">
                 <name/>
-                <line>169</line>
+                <line>193</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>src/Interface/Main.java</url>
+            <bookmark id="2">
+                <name/>
+                <line>143</line>
                 <key/>
             </bookmark>
         </file>
@@ -15,10 +31,8 @@
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Main/GrafoRedsocial.java</file>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/graforedsocial/GrafoMatriz.java</file>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Interface/Main.java</file>
-            <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/lectura/ArchivoTxt.java</file>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/graforedsocial/Lista.java</file>
-            <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Clases/Amistades.java</file>
-            <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Clases/Usuario.java</file>
+            <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Interface/AñadirAmistad.java</file>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Interface/Modificar.java</file>
             <file>file:/C:/Users/raco1/Desktop/ProyectoGrafos/Proyecto1/src/Interface/Funciones.java</file>
         </group>
