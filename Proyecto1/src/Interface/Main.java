@@ -64,6 +64,10 @@ public class Main extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        recorrido = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -85,7 +89,7 @@ public class Main extends javax.swing.JFrame {
                 btnShowGraphActionPerformed(evt);
             }
         });
-        jPanel1.add(btnShowGraph, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 130, -1));
+        jPanel1.add(btnShowGraph, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 130, -1));
 
         btnConections.setText("Mostrar Puentes");
         btnConections.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +97,7 @@ public class Main extends javax.swing.JFrame {
                 btnConectionsActionPerformed(evt);
             }
         });
-        jPanel1.add(btnConections, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
+        jPanel1.add(btnConections, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, -1, -1));
 
         btnUploadTxt.setText("Cargar txt");
         btnUploadTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -101,15 +105,15 @@ public class Main extends javax.swing.JFrame {
                 btnUploadTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(btnUploadTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 100, -1));
+        jPanel1.add(btnUploadTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 100, -1));
 
-        jButton1.setText("Mostrar islas ");
+        jButton1.setText("BFS");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
         botonModificar.setText("Modificar usuarios");
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +121,7 @@ public class Main extends javax.swing.JFrame {
                 botonModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+        jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 0, 51));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -127,7 +131,29 @@ public class Main extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, -1));
+
+        jLabel1.setText("Mostrar Islas ");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+
+        jButton2.setText("DFS");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
+
+        recorrido.setText(" ");
+        jPanel1.add(recorrido, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 120, 30));
+
+        jButton4.setText("Instruccion");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 100, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
@@ -147,8 +173,10 @@ public class Main extends javax.swing.JFrame {
             Recorridos reco = new Recorridos();
             
             ListaIslas cont = reco.recorridoDeAnchura(grafo);
+            int numIslas=cont.getSize();
+            JOptionPane.showMessageDialog(null,"La cantidad de islas del grafo es de: " +Integer.toString(cont.getSize()));
+            recorrido.setText("Anchura " + "Islas: "+Integer.toString(numIslas));
             
-            System.out.println(cont.getSize());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -215,6 +243,26 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnConectionsActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (grafo == null) {
+            JOptionPane.showMessageDialog(null, "No se ha cargado informacion al grafo");
+        } else {
+            Recorridos reco = new Recorridos();
+            ListaIslas contDfs= reco.recorridoDeProfundidad(grafo);
+            int contIslas=contDfs.getSize();
+            JOptionPane.showMessageDialog(null,"La cantidad de islas del grafo es de: " +Integer.toString(contDfs.getSize()));
+            recorrido.setText("Anchura " + "Islas: "+Integer.toString(contIslas));
+            
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null,"Para que el boton mostrar grafo funcione es necesario añdir los archivos .jar "
+                + "\n"+"que se encuentran en la carpeta librerias,  en el folder Libraries dentro de netbeans ");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -257,8 +305,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnShowGraph;
     private javax.swing.JButton btnUploadTxt;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel recorrido;
     // End of variables declaration//GEN-END:variables
 
 }

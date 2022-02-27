@@ -96,4 +96,54 @@ public class Recorridos {
         
         
     }
+    public Lista dfs(GrafoMatriz g, String id, boolean[] marcado){
+        Nodo pos= g.getUsuarios().buscarNodo(id);
+        int v=g.getUsuarios().getPosicion(pos);
+        Lista orden= new Lista();
+        //boolean [] marcado= new boolean[g.getSizeUsers()];
+        Stack pila= new Stack();
+        marcado[v]=true;
+        pila.push(v);
+        while(!pila.isEmpty()){
+            int ac= pila.pop();
+            Usuario help = g.getUsuarios().getUsuario(ac);
+            orden.insertarUsuario(help);
+            for (int i = 0; i < g.getSizeUsers(); i++) {
+                if(i!=ac && g.getMatriz()[ac][i]!=0&&marcado[i]!=true){
+                    help=g.getUsuarios().getUsuario(i);
+                    orden.insertarUsuario(help);
+                    pila.push(i);
+                    marcado[i]=true;
+                    
+                }
+            }
+        }
+        return orden;
+    }
+    
+    public ListaIslas recorridoDeProfundidad(GrafoMatriz g){
+        ListaIslas cantIslas= new ListaIslas();
+        int contIslas=0;
+        boolean[] marcado= new boolean[g.getSizeUsers()];
+        for (int i = 0; i < marcado.length; i++) {
+            marcado[i]=false;
+        }
+        String idNoVisitado;
+        boolean fin=true;
+        while(fin==true){
+            for (int i = 0; i < marcado.length; i++) {
+                if(marcado[i]==false){
+                    idNoVisitado=g.getUsuarios().getUsuario(i).getId();
+                    cantIslas.insertarUsuario(this.dfs(g, idNoVisitado, marcado));
+                }
+            }
+            fin=false;
+            
+        }
+        contIslas=cantIslas.getSize();
+        
+        return cantIslas;
+        
+        
+    }
 }

@@ -13,6 +13,7 @@ import graforedsocial.Nodo;
  */
 public class Stack {
     private Node top;
+    Node base;
     private int size;
     
     public Stack() {
@@ -21,14 +22,19 @@ public class Stack {
     }
     
     public boolean isEmpty() {
-        return getTop() == null;
+        return top == null;
     }
     
     public void push(int user) {
-        Node node = new Node(user);
-        node.setPnext(node);
-        setTop(node);
+        Node nuevo =new Node(user); 
+        if (this.isEmpty()) {
+        top = base = nuevo;
+        }else{
+        nuevo.setPnext(top);
+        top = nuevo;
+        }
         size++;
+
     }
     
     public int pop(){
