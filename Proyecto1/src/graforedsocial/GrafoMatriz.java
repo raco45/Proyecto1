@@ -3,6 +3,7 @@ package graforedsocial;
 
 
 import Clases.Amistades;
+import Recorrido.Queue;
 import Clases.Usuario;
 import javax.swing.JOptionPane;
 import javax.swing.Icon;

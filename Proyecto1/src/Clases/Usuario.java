@@ -11,7 +11,7 @@ import graforedsocial.Lista;
 public class Usuario {
     private String id;
     private String userName;
-    private Lista listaAmigos;
+   
     
     /**
      * Constructor de la clase usuario
@@ -21,7 +21,7 @@ public class Usuario {
     public Usuario(String id, String userName){
         this.id=id;
         this.userName=userName;
-        this.listaAmigos=null; 
+        
         
     }
     
@@ -33,12 +33,7 @@ public class Usuario {
         return id;
     }
 
-    /**
-     * @return the listaAmigos
-     */
-    public Lista getListaAmigos() {
-        return listaAmigos;
-    }
+    
 
     /**
      * @return the userName
@@ -54,12 +49,7 @@ public class Usuario {
         this.id = id;
     }
 
-    /**
-     * @param listaAmigos the listaAmigos to set
-     */
-    public void setListaAmigos(Lista listaAmigos) {
-        this.listaAmigos = listaAmigos;
-    }
+    
 
     /**
      * @param userName the userName to set

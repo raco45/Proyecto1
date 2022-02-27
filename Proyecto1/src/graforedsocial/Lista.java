@@ -95,7 +95,7 @@ public class Lista {
             }
             size+=1;
         }else if(help!=null){
-            JOptionPane.showMessageDialog(null,"Este usuario ya existe");
+            //JOptionPane.showMessageDialog(null,"Este usuario ya existe");
         }
     }
 
@@ -184,6 +184,10 @@ public class Lista {
                 if(actual==pFirst){
                     pFirst=actual.getpNext();
                     size--;
+                }else if(actual==pLast){
+                    anterior.setpNext(actual.getpNext()); 
+                    pLast=anterior;
+                    size--;
                 }
                 else{
                     anterior.setpNext(actual.getpNext());
@@ -198,6 +202,38 @@ public class Lista {
         }else{
             JOptionPane.showMessageDialog(null,"Borrado con exito");
         }
+    }
+    public void eliminarRelacion(Amistades amis){
+        Nodo actual, anterior;
+            boolean encontrado;
+            actual=pFirst;
+            anterior= null;
+            encontrado = false;
+            while((actual!=null)&&!encontrado){
+                String id1=actual.getAmigos().getId1().getId();
+                String id2=actual.getAmigos().getId2().getId();
+                encontrado= id1.equals(amis.getId1().getId())&&id2.equals(amis.getId2().getId());
+
+                if(!encontrado){
+                    anterior=actual;
+                    actual=actual.getpNext();
+                }
+            }
+            if(actual!=null){
+                if(actual==pFirst){
+                    pFirst=actual.getpNext();
+                    size--;
+                }else if(actual==pLast){
+                    anterior.setpNext(actual.getpNext()); 
+                    pLast=anterior;
+                    size--;
+                }
+                else{
+                    anterior.setpNext(actual.getpNext());
+                    size--;
+                }
+                actual=null;
+            }
     }
         
      
@@ -287,11 +323,11 @@ public class Lista {
      * Se encarga de imprimir la lista de Amistades
      */            
      public void imprimirAmistades(){
-        String mostrar="";
+        String mostrar="Los puentes encontrados son: "+"\n";
         if(!isVacio()){
             Nodo aux = pFirst;
             for (int i = 0; i < size; i++) {
-                mostrar+=aux.getAmigos().getId1().getId()+", "+ aux.getAmigos().getId2().getId()+ ", "+ aux.getAmigos().getTiempoAmistad() +"\n";
+                mostrar+=aux.getAmigos().getId1().getUserName()+"---"+aux.getAmigos().getTiempoAmistad() +"---" + aux.getAmigos().getId2().getUserName()+ "\n";
                 
                 aux = aux.getpNext();
             }
@@ -317,9 +353,23 @@ public class Lista {
         }else{
             return null;
         }
-        
-        
     }
+    
+    public int getPosicion(Nodo pos) {
+        if (!isVacio()) {
+            Nodo aux = getpFirst();
+            int cont = 0;
+            while (aux != pos) {
+                cont++;
+                aux = aux.getpNext();
+            }
+            return cont;
+        } else {
+            return -1;
+        }
+    }
+        
+        
 }
                 
     

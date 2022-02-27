@@ -6,7 +6,12 @@
 package Interface;
 
 import Main.GrafoRedsocial;
+import Recorrido.ListaIslas;
+import Recorrido.Puentes;
+import Recorrido.Queue;
+import Recorrido.Recorridos;
 import graforedsocial.GrafoMatriz;
+import graforedsocial.Lista;
 import graforedsocial.Nodo;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -26,7 +31,7 @@ import org.graphstream.ui.spriteManager.*;
  * @author AROMERO
  */
 public class Main extends javax.swing.JFrame {
-
+    
     GrafoMatriz grafo;
     String path;
 
@@ -83,6 +88,11 @@ public class Main extends javax.swing.JFrame {
         jPanel1.add(btnShowGraph, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 130, -1));
 
         btnConections.setText("Mostrar Puentes");
+        btnConections.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConectionsActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnConections, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
 
         btnUploadTxt.setText("Cargar txt");
@@ -131,6 +141,15 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if (grafo == null) {
+            JOptionPane.showMessageDialog(null, "No se ha cargado informacion al grafo");
+        } else {
+            Recorridos reco = new Recorridos();
+            
+            ListaIslas cont = reco.recorridoDeAnchura(grafo);
+            
+            System.out.println(cont.getSize());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
@@ -138,7 +157,7 @@ public class Main extends javax.swing.JFrame {
         if (grafo == null) {
             JOptionPane.showMessageDialog(null, "No se ha cargado informacion al grafo");
         } else {
-
+            
             Modificar v2 = new Modificar(this);
             v2.setVisible(true);
         }
@@ -153,7 +172,7 @@ public class Main extends javax.swing.JFrame {
         grafo.llenarMatriz();
         path = aux.getRuta();
         JOptionPane.showMessageDialog(null, "Recuerde actualizar los datos una vez modificada la informacion");
-
+        
 
     }//GEN-LAST:event_btnUploadTxtActionPerformed
 
@@ -169,9 +188,9 @@ public class Main extends javax.swing.JFrame {
                 Mostrar most = new Mostrar();
                 most.mostrarGrafos(grafo);
             } else {
-
+                
             }
-
+            
         }
 
     }//GEN-LAST:event_btnShowGraphActionPerformed
@@ -185,6 +204,16 @@ public class Main extends javax.swing.JFrame {
             escri.escribirTxt(grafo.getUsuarios(), grafo.getAmigos(), path);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnConectionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectionsActionPerformed
+        // TODO add your handling code here:
+        if (grafo == null) {
+            JOptionPane.showMessageDialog(null, "No se ha cargado informacion al grafo");
+        } else {
+            Puentes puente = new Puentes();
+            puente.identificarPuentes(grafo);
+        }
+    }//GEN-LAST:event_btnConectionsActionPerformed
 
     /**
      * @param args the command line arguments
