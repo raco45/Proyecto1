@@ -1,0 +1,5 @@
+Buen día 
+
+Para que el proyecto funcione de manera correcta es necesario añadir los archivos .jar que se encuentran en la carpeta librerías al folder "Libraries" una vez abierto el proyecto en neat beans. 
+
+Muchas gracias. 
