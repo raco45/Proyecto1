@@ -2,13 +2,13 @@
 package graforedsocial;
 
 
+import Clases.Amistades;
+import Clases.Usuario;
 import javax.swing.JOptionPane;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 /**
  *Clase GrafoMatriz
  * 
- * Contiene la matriz de adyacencia
+ * Description: Clase utilizada para crear un grafo
  * 
  * @author raco1
  */
@@ -20,7 +20,7 @@ public class GrafoMatriz {
      */
     private Lista usuarios;
     /**
-     * array de amistades (probablemente se vaya a cambiar )
+     * Lista de amistades 
      */
     private Lista amigos;
     /**
@@ -35,8 +35,8 @@ public class GrafoMatriz {
     // Constructores
     /**
      * Constructor con 2 parametros
-     * @param almacenes
-     * @param arcos 
+     * @param usuarios(Lista de usuarios)
+     * @param amigos(Lista de las relaciones de amistad de los usuarios) 
      */
     public GrafoMatriz(Lista usuarios, Lista amigos ){
         this.usuarios=usuarios;
@@ -59,7 +59,7 @@ public class GrafoMatriz {
         }
     }
     /**
-     * Se encarga de llenar la matriz con la distancia de los caminos entre los grafos
+     * Se encarga de llenar la matriz con el tiempo de amistad entre las relaciones de amistad
      */
     public void llenarMatriz(){
         String inicio;
@@ -68,12 +68,12 @@ public class GrafoMatriz {
         int numAl=0;
         int numIl=0;
         
-        String verde = "\033[32m";
-        String amarillo = "\033[33m";
+        
         try{
             
         for (Nodo amigo=getAmigos().getpFirst(); amigo!=null; amigo=amigo.getpNext()  ) {
             inicio=amigo.getAmigos().getId1().getId();
+
             fina=amigo.getAmigos().getId2().getId();
             peso=amigo.getAmigos().getTiempoAmistad();
             
@@ -92,31 +92,21 @@ public class GrafoMatriz {
                 getMatriz()[numAl][numIl]=peso;
                 getMatriz()[numIl][numAl]=peso;
         }
-
-        
         }catch (Exception err){
             JOptionPane.showMessageDialog(null, "Una lista esta vacia");
         }
     }
+
+        
         
     /**
-     * Imprime la matriz de adyacencia (Esta aqui temporalmente)
+     * Imprime la matriz de adyacencia 
      */
     public void imprimirGrafo(){
         String verde = "\033[32m";
         String amarillo = "\033[33m";
         
-//        for(int i=0; i <matriz.length; i++ ){
-//            for(int j=0; j< matriz[i].length;j++){
-//                if(matriz[i][j]!=0){
-//                    System.out.print(verde+matriz[i][j]+ " | ");
-//                }else{
-//                    System.out.print(amarillo+matriz[i][j]+ " | ");
-//                    
-//                }
-//            }
-//            System.out.println();
-//        }
+
         
 
         System.out.print(" ");
@@ -137,133 +127,74 @@ public class GrafoMatriz {
                 }
             System.out.println("\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         }        
+}
+    
+    
+    /**
+     * Se encarga de añadir una nueva arista al grafo, entre dos vertices que pertenezcan al grafo
+     * @param id
+     * @param userName2
+     * @param peso 
+     */
+    
+    public void añadirAmistad(String id, String userName2, int peso){
+        Usuario user1= usuarios.buscarUser(id);
+        Usuario user2=usuarios.buscarUsarName(userName2);
+        Amistades amistad= new Amistades(user1, user2, peso);
+        amigos.insertarAmistad(amistad);
+        
+    }
+    
+    /**
+     * Se encarga de añadir un nuevo vertice al grafo
+     * @param id
+     * @param userName 
+     */
+    public void añadirUsuario(String id, String userName){
+        Usuario user= new Usuario(id,"@"+userName);
+        usuarios.insertarUsuario(user);
+        sizeUsers=usuarios.getSize();
+        
+    }
+    
+    /**
+     * se encarga de eliminar un vertice del grafo y eliminar todas las aristas que tuvieran como conexion dicho vertice 
+     * 
+     * @param userName 
+     */
+    public void eliminarUsuario(String userName){
+        Usuario aux= usuarios.buscarUsarName(userName);
+        if(aux!=null){
+            usuarios.eliminarUsuario(aux.getId());
+            amigos.eliminarAmistad(aux.getId());
+            sizeUsers= usuarios.getSize();
+            JOptionPane.showMessageDialog(null,"El usuario y sus relaciones de amistad fueron eliminadas");
+        }else{
+            JOptionPane.showMessageDialog(null,"No se encontro el usuario");
+        }
+    }
 
         
-}     
-//    /**
-//     * Asigna un nuevo arco 
-//     * @param salida
-//     * @param llegada
-//     * @param peso 
-//     */
-//    private void addArco(Almacen salida, Almacen llegada, int peso){
-//        //En construccion 
-//        try{
-//            if(getAlmacenes().buscar(salida.getId())!=null && getAlmacenes().buscar(llegada.getId())!=null ){
-//                 Ruta nueva= new Ruta(salida,llegada,peso);
-//                 getArcos().insertarRuta(nueva);
-//            }else{
-//                JOptionPane.showMessageDialog(null, "El almacen no pertenece a la lista");
-//            }
-//        }catch(Exception error) {
-//            
-//        }
-//    }
-//    
-//    
-//    /**
-//     * Agrega un nuevo almacen al grafo
-//     * @param id
-//     * @param stock 
-//     */
-//    public void addAlmacen(String id, Lista stock){
-//        try{
-//            if(getAlmacenes().buscar(id)==null){
-//                Almacen nuevo= new Almacen(id, stock);
-//                getAlmacenes().insertarAlmacen(nuevo);
-//                setSizeAlm(getSizeAlm() + 1);
-//                while(true){
-//                    Almacen llegada=elegirAlm();
-//                    int peso=pedirPeso();
-//                    Almacen llegada2=elegirAlm();
-//                    int peso2=pedirPeso();
-//                    if (llegada!=null ){
-//                        if(peso!=0){
-//                            addArco(nuevo, llegada, peso);
-//                            addArco(nuevo, llegada2, peso2);
-//                            generarM();
-//                            llenarMatriz();
-//                            break;
-//                        }else{
-//                            JOptionPane.showMessageDialog(null, "No es un input correcto ");
-//                        }
-//                    }else{
-//                        JOptionPane.showMessageDialog(null, "Error al colocar el almacen ");
-//                    }
-//                }
-//                JOptionPane.showMessageDialog(null,"Se agrego un nuevo almacen");
-//            }else{
-//                JOptionPane.showMessageDialog(null,"Ese almacen ya existe");
-//            }
-//        }catch (Exception err){
-//            JOptionPane.showMessageDialog(null,"Ese almacen ya existe");
-//        }
-//      }
-//    
-//   /**
-//    * Se encarga de pedir un almacen de llegada para generar una nueva ruta
-//    * @return el almacen a donde queremos llegar
-//    */
-//     public Almacen elegirAlm(){
-//         try{
-//             
-//            String[] cadena = new String[getAlmacenes().getSize()-1];
-//            int count=0;
-//
-//            for(Nodo aux=getAlmacenes().getpFirst();aux!=null; aux=aux.getpNext()){
-//                if(aux==getAlmacenes().getpLast()){
-//                    count++;
-//                }else{
-//                   cadena[count]=aux.getAlmacen().getId();
-//                   count++;
-//                }
-//            }
-//            Icon icono = new ImageIcon(getClass().getResource("almacen.jpg"));
-//            String resp = (String) JOptionPane.showInputDialog(null, "Seleccione el almacen de llegada", "Almacen", JOptionPane.DEFAULT_OPTION,icono , cadena, cadena[0]);
-//            return getAlmacenes().buscar(resp).getAlmacen();
-//                 
-//         }catch(Exception err){
-//             JOptionPane.showMessageDialog(null,"Error");
-//             return null;
-//         }
-//         
-//     }   
-//     
-//     /**
-//      * Se encarga de pedir el la distancia entre dos almacenes
-//      * @return la distancia entre los almacenes
-//      */
-//    public int pedirPeso(){
-//        String peso;
-//        try{
-//            while(true){
-//                peso = JOptionPane.showInputDialog(null, "¿Cual es la distancia entre los almacenes?", "redondee");
-//                if(Integer.parseInt(peso)<=0){
-//                    JOptionPane.showMessageDialog(null, "No es un numero valido", "Error", JOptionPane.WARNING_MESSAGE);
-//                    continue;
-//                }else{
-//                    return Integer.parseInt(peso);
-//                }
-//            }
-//        }catch(Exception err){
-//                JOptionPane.showMessageDialog(null, "No es un numero valido", "Error", JOptionPane.WARNING_MESSAGE);
-//        }
-//        return 0;
-//    }  
-//    
-//    
-//    /**
-//     * Se encarga de eliminar un almacen y sus rutas
-//     * @param id 
-//     */
-//    public void eliminarAlmacen(String id){
-//        getAlmacenes().removerPorReferencia(id);
-//        getArcos().removerRuta(id);
-//        getArcos().removerRuta(id);
-//        getAlmacenes().imprimir();
-//        getArcos().imprimirRuta();
-//        
-//    }
+        
+            
+        
+    /**
+     * se encarga de volver a generar la matriz 
+     */
+    public void actualizarMatriz(){
+        this.generarM();
+        this.llenarMatriz();
+    }
+    
+        
+        
+ 
+
+     
+     
+  
+
+
 
     /**
      * @return the amigos

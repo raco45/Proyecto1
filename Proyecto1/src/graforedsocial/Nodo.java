@@ -11,6 +11,7 @@ import Clases.Amistades;
 public class Nodo {
     private Amistades amigos;
     private Usuario user;
+    private int pos;
     private Nodo pNext;
     
     
@@ -63,6 +64,20 @@ public class Nodo {
      */
     public void setpNext(Nodo pNext) {
         this.pNext = pNext;
+    }
+
+    /**
+     * @return the pos
+     */
+    public int getPos() {
+        return pos;
+    }
+
+    /**
+     * @param pos the pos to set
+     */
+    public void setPos(int pos) {
+        this.pos = pos;
     }
     
 

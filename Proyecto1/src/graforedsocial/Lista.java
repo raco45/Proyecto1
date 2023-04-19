@@ -77,20 +77,26 @@ public class Lista {
     }
     
     /**
-     * Agrega un elemento al final de la lista 
+     * Agrega un nuevo usuario a la lista de usuarios 
      * @param user
      */
     public void insertarUsuario(Usuario user){
-        Nodo nuevo= new Nodo(user);
-        if(isVacio()){
-            pFirst=nuevo;
-            pLast=nuevo;
-        }else{
-            Nodo aux = pLast;
-            aux.setpNext(nuevo);
-            pLast=nuevo;
+        Usuario help=this.buscarUser(user.getId());
+        if(help==null){
+            
+            Nodo nuevo= new Nodo(user);
+            if(isVacio()){
+                pFirst=nuevo;
+                pLast=nuevo;
+            }else{
+                Nodo aux = pLast;
+                aux.setpNext(nuevo);
+                pLast=nuevo;
+            }
+            size+=1;
+        }else if(help!=null){
+            //JOptionPane.showMessageDialog(null,"Este usuario ya existe");
         }
-        size+=1;
     }
 
     /**
@@ -109,56 +115,220 @@ public class Lista {
         }
         size+=1;
     }
-//   /**
-//    * se encarga de eliminar un objecto de la lista de almacenes
-//    * @param referencia 
-//    */
-//    public void removerPorReferencia(String referencia){
-//        if (buscar(referencia)!=null) {
-//            if (pFirst.getAlmacen().getId().equals( referencia)) {
-//                pFirst = pFirst.getpNext();
-//            } else{
-//                Nodo aux = pFirst;
-//                while(!aux.getpNext().getAlmacen().getId().equals(referencia)){
-//                    aux = aux.getpNext();
-//                }
-//                Nodo siguiente = aux.getpNext().getpNext();
-//                aux.setpNext(siguiente);  
-//            }
-//            size--;
-//        }
-//    }
-//       
-//      /**
-//       * Elimina un objeto de la lista de rutas 
-//       * @param referencia 
-//       */
-//    public void removerRuta(String referencia){
-//        if (buscarRuta(referencia)!=null) {
-//            if (pFirst.getRuta().getSalida().getId().equals( referencia)) {
-//                pFirst = pFirst.getpNext();
-//            } else{
-//                Nodo aux = pFirst;
-//                while(!aux.getpNext().getRuta().getSalida().getId().equals(referencia)){
-//                    aux = aux.getpNext();
-//                }
-//                Nodo siguiente = aux.getpNext().getpNext();
-//                aux.setpNext(siguiente);  
-//            }
-//            size--;
-//        }
-//    }
-//            
+    
+    
+    /**
+     * Se encargar de eliminar un usuario de la lista de usuarios
+     * @param id 
+     */
+    public void eliminarUsuario(String id){
+        Nodo actual, anterior;
+        boolean encontrado;
+        
+        actual=pFirst;
+        anterior= null;
+        encontrado = false;
+        while((actual!=null)&&!encontrado){
+            encontrado= actual.getUser().getId().equals(id);
+            
+            if(!encontrado){
+                anterior=actual;
+                actual=actual.getpNext();
+            }
+        }
+        if(actual!=null){
+            if(actual==pFirst){
+                pFirst=actual.getpNext();
+            }else if(actual==pLast){
+                anterior.setpNext(actual.getpNext()); 
+                pLast=anterior;}
+            else{
+                anterior.setpNext(actual.getpNext());
+                
+            }
+            actual=null;
+        }
+        size--;
+    }
+    
+    /**
+     * Se encarga de eliminar una relacion de amistad de la lista de amistades
+     * @param id 
+     */
+    public void eliminarAmistad(String id){
+        int cont=0;
+        Nodo aux=pFirst;
+        for (int i = 0; i < this.getSize(); i++) {
+            if(aux.getAmigos().getId1().getId().equals(id)||aux.getAmigos().getId2().getId().equals(id)){
+            cont++;
+            }
+            aux=aux.getpNext();
+           
+        }
+            Nodo actual, anterior;
+            boolean encontrado;
+            actual=pFirst;
+            anterior= null;
+            encontrado = false;
+            while((actual!=null)&&!encontrado){
+                String id1=actual.getAmigos().getId1().getId();
+                String id2=actual.getAmigos().getId2().getId();
+                encontrado= id1.equals(id)||id2.equals(id);
+
+                if(!encontrado){
+                    anterior=actual;
+                    actual=actual.getpNext();
+                }
+            }
+            if(actual!=null){
+                if(actual==pFirst){
+                    pFirst=actual.getpNext();
+                    size--;
+                }else if(actual==pLast){
+                    anterior.setpNext(actual.getpNext()); 
+                    pLast=anterior;
+                    size--;
+                }
+                else{
+                    anterior.setpNext(actual.getpNext());
+                    size--;
+                }
+                actual=null;
+            }
+            
+            
+        if(cont!=0){
+            this.eliminarAmistad(id);
+        }else{
+            JOptionPane.showMessageDialog(null,"Borrado con exito");
+        }
+    }
+    public void eliminarRelacion(Amistades amis){
+        Nodo actual, anterior;
+            boolean encontrado;
+            actual=pFirst;
+            anterior= null;
+            encontrado = false;
+            while((actual!=null)&&!encontrado){
+                String id1=actual.getAmigos().getId1().getId();
+                String id2=actual.getAmigos().getId2().getId();
+                encontrado= id1.equals(amis.getId1().getId())&&id2.equals(amis.getId2().getId());
+
+                if(!encontrado){
+                    anterior=actual;
+                    actual=actual.getpNext();
+                }
+            }
+            if(actual!=null){
+                if(actual==pFirst){
+                    pFirst=actual.getpNext();
+                    size--;
+                }else if(actual==pLast){
+                    anterior.setpNext(actual.getpNext()); 
+                    pLast=anterior;
+                    size--;
+                }
+                else{
+                    anterior.setpNext(actual.getpNext());
+                    size--;
+                }
+                actual=null;
+            }
+    }
+        
+     
+    /**
+     * Se encarga de buscar el elemento que contenga el id
+     * @param id
+     * @return aux, en caso de no encontrar el id null 
+     */
+    public Nodo buscarNodo(String id){
+        Nodo aux;
+        for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
+            if(id.equals(aux.getUser().getId())){
+                return aux;
+            }
+        }
+        return null;
+    }
+
+            
+/**
+ * Busca el elemento de la lista indicaco por el id
+ * @param id
+ * @return retorna el objeto usuario si fue encontrado
+ */    
+    public Usuario buscarUser(String id){
+        Nodo aux;
+        for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
+            if(id.equals(aux.getUser().getId())){
+                return aux.getUser();
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * Busca el elemento de la lista indicado por el userName
+     * @param userName
+     * @return retorna el usuario si fue encontrado, de lo contrario retorna null
+     */
+    public Usuario buscarUsarName(String userName){
+         Nodo aux;
+        for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
+            if(userName.equals(aux.getUser().getUserName())){
+                return aux.getUser();
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * Se encarga de verificar si dos usuarios tienen una relacion de amistad 
+     * @param id1
+     * @param id2
+     * @return Retorna true en caso de teneral, false caso contrario
+     */
+    public boolean buscarAmistad(Usuario id1, Usuario id2 ){
+        Nodo aux;
+        for (aux=pFirst ;  aux!=null; aux=aux.getpNext()) {
+            if((id1==aux.getAmigos().getId1()&&id2==aux.getAmigos().getId2())||(id1==aux.getAmigos().getId2()&&id2==aux.getAmigos().getId1()))
+                return true;
+        }
+        return false;
+    }
+
+                
        /**
         * Se encarga de imprimir la lista de usarios
+     * @return lista 
         */         
-     public void imprimir(){
+     public String imprimir(){
         String mostrar="";
         if(!isVacio()){
             Nodo aux = pFirst;
+
             for (int i = 0; i < size; i++) {
-                mostrar+=aux.getUser().getId()+"\n";
-                //System.out.print(aux.getDato()+ "\n ");
+                mostrar+=aux.getUser().getUserName()+"---"+aux.getUser().getId()+"\n" ;
+                
+                aux = aux.getpNext();
+            }
+            
+        } else{
+            System.out.println("Lista vacia");
+        }
+        return mostrar;
+    }
+    /**
+     * Se encarga de imprimir la lista de Amistades
+     */            
+     public void imprimirAmistades(){
+        String mostrar="Los puentes encontrados son: "+"\n";
+        if(!isVacio()){
+            Nodo aux = pFirst;
+            for (int i = 0; i < size; i++) {
+                mostrar+=aux.getAmigos().getId1().getUserName()+"---"+aux.getAmigos().getTiempoAmistad() +"---" + aux.getAmigos().getId2().getUserName()+ "\n";
+                
                 aux = aux.getpNext();
             }
             JOptionPane.showMessageDialog(null,mostrar );
@@ -167,54 +337,6 @@ public class Lista {
         }
     }
 
-                
-    /**
-     * Se encarga de imprimir la lista de Amistades
-     */            
-     public void imprimirAmistades(){
-        String mostrar="";
-        if(!isVacio()){
-            Nodo aux = pFirst;
-            for (int i = 0; i < size; i++) {
-                mostrar+=aux.getAmigos().getId1().getId()+", "+ aux.getAmigos().getId2().getId()+ ", "+ aux.getAmigos().getTiempoAmistad() +"\n";
-                
-                aux = aux.getpNext();
-            }
-            JOptionPane.showMessageDialog(null,mostrar );
-        } else{
-            System.out.println("Lista vacia");
-        }
-    }
-//               
-//     /**
-//      * se encarga de buscar un almacen en la lista 
-//      * @param id
-//      * @return el nodo en donde esta guardado el dato id
-//      */          
-//    public Nodo buscar(String id){
-//        Nodo aux;
-//        for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
-//            if(id.equals(aux.getAlmacen().getId())){
-//                return aux;
-//            }
-//        }
-//        return null;
-//    }   
-//
-///**
-// * Se encarga de buscar una ruta en la lista
-// * @param id
-// * @return un nodo que tiene una de las rutas del almacen
-// */    
-//    public Nodo buscarRuta(String id){
-//        Nodo aux;
-//        for (aux = pFirst; aux !=null  ; aux=aux.getpNext()) {
-//            if(id.equals(aux.getRuta().getSalida().getId())){
-//                return aux;
-//            }
-//        }
-//        return null;
-//    }       
 //    
     /**
      * Busca el elemento de la lista indicado por indice
@@ -231,9 +353,27 @@ public class Lista {
         }else{
             return null;
         }
-        
-        
     }
+    /**
+     * Metodo que busca el indice en que el que se encuentra un elemento
+     * @param pos
+     * @return entero
+     */
+    public int getPosicion(Nodo pos) {
+        if (!isVacio()) {
+            Nodo aux = getpFirst();
+            int cont = 0;
+            while (aux != pos) {
+                cont++;
+                aux = aux.getpNext();
+            }
+            return cont;
+        } else {
+            return -1;
+        }
+    }
+        
+        
 }
                 
     
